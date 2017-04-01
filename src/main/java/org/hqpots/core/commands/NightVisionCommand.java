@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.hqpots.core.utils.ColorUtils;
+import org.hqpots.core.utils.StringUtil;
 
 public class NightVisionCommand implements CommandExecutor
 {
@@ -24,12 +24,12 @@ public class NightVisionCommand implements CommandExecutor
 		if (player.getActivePotionEffects().contains(PotionEffectType.NIGHT_VISION))
 		{
 			player.removePotionEffect(PotionEffectType.NIGHT_VISION);
-			player.sendMessage(new ColorUtils().translateFromString("&cNightvision disabled."));
+			player.sendMessage(StringUtil.colorize("&cNightvision disabled."));
 			return false;
 		}
 
 		player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 100000000, 1));
-		player.sendMessage(new ColorUtils().translateFromString("&aNightvision enabled."));
+		player.sendMessage(StringUtil.colorize("&aNightvision enabled."));
 
 		return false;
 	}

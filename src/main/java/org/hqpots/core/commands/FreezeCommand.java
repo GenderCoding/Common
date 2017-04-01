@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.hqpots.core.Core;
-import org.hqpots.core.utils.ColorUtils;
+import org.hqpots.core.utils.StringUtil;
 
 public class FreezeCommand implements CommandExecutor, TabCompleter
 {
@@ -21,7 +21,7 @@ public class FreezeCommand implements CommandExecutor, TabCompleter
 	{
 		if (!(sender instanceof Player))
 		{
-			sender.sendMessage(new ColorUtils().translateFromString("&cYou can not execute this command on console."));
+			sender.sendMessage(StringUtil.colorize("&cYou can not execute this command on console."));
 			return false;
 		}
 
@@ -30,7 +30,7 @@ public class FreezeCommand implements CommandExecutor, TabCompleter
 		{
 			if (arguments.length == 0 || arguments.length > 1)
 			{
-				player.sendMessage(new ColorUtils().translateFromString("&cUsage: /" + label + " <playerName>"));
+				player.sendMessage(StringUtil.colorize("&cUsage: /" + label + " <playerName>"));
 				return true;
 			}
 
@@ -39,13 +39,13 @@ public class FreezeCommand implements CommandExecutor, TabCompleter
 				Player target = Bukkit.getServer().getPlayerExact(arguments[0]);
 				if (target == null)
 				{
-					player.sendMessage(new ColorUtils().translateFromString("&cPlayer named '" + arguments[0] + "' not found."));
+					player.sendMessage(StringUtil.colorize("&cPlayer named '" + arguments[0] + "' not found."));
 				}
 				else
 				{
 					if (target.equals(player))
 					{
-						player.sendMessage(new ColorUtils().translateFromString("&cYou can not freeze yourself."));
+						player.sendMessage(StringUtil.colorize("&cYou can not freeze yourself."));
 					}
 					else
 					{
@@ -63,7 +63,7 @@ public class FreezeCommand implements CommandExecutor, TabCompleter
 		}
 		else
 		{
-			player.sendMessage(new ColorUtils().translateFromString("&cYou do not have permissions to execute this command."));
+			player.sendMessage(StringUtil.colorize("&cYou do not have permissions to execute this command."));
 		}
 
 		return true;

@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.hqpots.core.Core;
-import org.hqpots.core.utils.ColorUtils;
+import org.hqpots.core.utils.StringUtil;
 
 public class VanishCommand implements CommandExecutor, TabCompleter
 {
@@ -20,7 +20,7 @@ public class VanishCommand implements CommandExecutor, TabCompleter
 	{
 		if (!(sender instanceof Player))
 		{
-			sender.sendMessage(new ColorUtils().translateFromString("&cYou can not execute this command on console."));
+			sender.sendMessage(StringUtil.colorize("&cYou can not execute this command on console."));
 			return false;
 		}
 
@@ -29,7 +29,7 @@ public class VanishCommand implements CommandExecutor, TabCompleter
 		{
 			if (arguments.length > 0)
 			{
-				player.sendMessage(new ColorUtils().translateFromString("&cUsage: /" + label));
+				player.sendMessage(StringUtil.colorize("&cUsage: /" + label));
 				return true;
 			}
 
@@ -38,18 +38,18 @@ public class VanishCommand implements CommandExecutor, TabCompleter
 				if (utilities.getStaffModeListener().isVanished(player))
 				{
 					utilities.getStaffModeListener().setVanished(player, false);
-					player.sendMessage(new ColorUtils().translateFromString("&eYou have &cdisabled &eyour vanish mode."));
+					player.sendMessage(StringUtil.colorize("&eYou have &cdisabled &eyour vanish mode."));
 				}
 				else
 				{
 					utilities.getStaffModeListener().setVanished(player, true);
-					player.sendMessage(new ColorUtils().translateFromString("&eYou have &aenabled &eyour vanish mode."));
+					player.sendMessage(StringUtil.colorize("&eYou have &aenabled &eyour vanish mode."));
 				}
 			}
 		}
 		else
 		{
-			player.sendMessage(new ColorUtils().translateFromString("&cYou do not have permissions to execute this command."));
+			player.sendMessage(StringUtil.colorize("&cYou do not have permissions to execute this command."));
 		}
 
 		return true;
