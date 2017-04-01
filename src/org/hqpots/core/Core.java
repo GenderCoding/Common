@@ -32,6 +32,7 @@ import org.hqpots.core.commands.ListCommand;
 import org.hqpots.core.commands.MuteChatCommand;
 import org.hqpots.core.commands.NightVisionCommand;
 import org.hqpots.core.commands.RenameCommand;
+import org.hqpots.core.commands.ReportCommand;
 import org.hqpots.core.commands.SpawnCommand;
 import org.hqpots.core.commands.StaffModeCommand;
 import org.hqpots.core.commands.login.LoginCommand;
@@ -105,6 +106,7 @@ public class Core extends JavaPlugin implements Listener
 		getCommand("creative").setExecutor(new CreativeCommand());
 		getCommand("nightvision").setExecutor(new NightVisionCommand());
 		getCommand("staffchat").setExecutor(new StaffChatCommand());
+		getCommand("report").setExecutor(new ReportCommand());
 		Bukkit.getServer().getPluginCommand("staffmode").setExecutor(new StaffModeCommand());
 		Bukkit.getServer().getPluginCommand("freeze").setExecutor(new FreezeCommand());
 		Bukkit.getServer().getPluginCommand("vanish").setExecutor(new VanishCommand());

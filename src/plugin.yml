@@ -31,3 +31,4 @@ commands:
     aliases: [nv, bright]
   staffchat:
     aliases: [sc, ac, adminchat]
+  report:
