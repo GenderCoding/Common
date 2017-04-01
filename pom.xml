@@ -39,7 +39,7 @@
     
   </properties>
 
-  <name>core</name>
+  <name>HQPots-Common</name>
   <url>http://maven.apache.org</url>
 
   <dependencies>
@@ -48,6 +48,32 @@
       <artifactId>junit</artifactId>
       <version>${version.junit}</version>
       <scope>test</scope>
+    </dependency>
+
+    <dependency>
+	     <groupId>org.projectlombok</groupId>
+	     <artifactId>lombok</artifactId>
+	     <version>1.16.16</version>
+         <scope>provided</scope>
+    </dependency>
+    <dependency>
+       <groupId>org.github.paperspigot</groupId>
+       <artifactId>paperspigot-api</artifactId>
+       <version>1.7.10-R0.1-SNAPSHOT</version>
+       <scope>provided</scope>
+    </dependency>
+    <dependency>
+    	<groupId>org.bukkit</groupId>
+    	<artifactId>craftbukkit</artifactId>
+    	<version>1.7.10-R0.1-SNAPSHOT</version>
+    	<scope>provided</scope>
+    </dependency>
+  	<dependency>
+       <groupId>ru.tehkode</groupId>
+       <artifactId>PermissionsEx</artifactId>
+       <version>1.23.3</version>
+       <scope>system</scope>
+       <systemPath>C:\Users\Public\Documents\PermissionsEx-1.23.3.jar</systemPath>
     </dependency>
 
     <!-- Shaded dependencies -->
@@ -61,24 +87,6 @@
       <artifactId>jedis</artifactId>
       <version>${version.jedis}</version>
     </dependency>
-	<dependency>
-      <groupId>net.md-5</groupId>
-      <artifactId>bungeecord-api</artifactId>
-      <version>1.10-SNAPSHOT</version>
-      <type>jar</type>
-      <scope>provided</scope>
-	</dependency>
-	<dependency>
-      <groupId>org.glassfish</groupId>
-      <artifactId>javax.json</artifactId>
-      <version>1.0.4</version>
-	</dependency>
-	<dependency>
-    <groupId>com.imaginarycode.minecraft</groupId>
-      <artifactId>RedisBungee</artifactId>
-      <version>0.3.6-SNAPSHOT</version>
-      <scope>provided</scope>
-	</dependency>
   </dependencies>
   
   <repositories>
@@ -86,6 +94,18 @@
    	 	<id>md_5-snapshots</id>
   	  	<url>http://repo.md-5.net/content/repositories/snapshots/</url>
 	</repository>
+   	<repository>
+        <id>destroystokyo-repo</id>
+        <url>https://repo.destroystokyo.com/repository/maven-snapshots/</url>
+    </repository>
+    <repository>
+        <id>sk89q-repo</id>
+        <url>http://maven.sk89q.com/artifactory/repo/com/sk89q/worldguard/</url>
+    </repository>
+    <repository>
+       <id>elmakers-repo</id>
+       <url>http://maven.elmakers.com/repository/</url>
+    </repository>
   </repositories>
   
   <profiles>

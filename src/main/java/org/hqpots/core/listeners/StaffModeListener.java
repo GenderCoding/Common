@@ -136,7 +136,6 @@ public class StaffModeListener implements Listener
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	public void setVanished(Player player, boolean status)
 	{
 		if (status == true)
@@ -433,7 +432,6 @@ public class StaffModeListener implements Listener
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerInteractRandomTeleportItem(PlayerInteractEvent event)
 	{
@@ -448,13 +446,20 @@ public class StaffModeListener implements Listener
 				{
 					if (isStaffModeActive(player) && player.hasPermission("command.player.staff"))
 					{
-						if (Bukkit.getServer().getOnlinePlayers().length > 1)
+						if (Bukkit.getServer().getOnlinePlayers().size() > 1)
 						{
 							Random random = new Random();
-							int size = random.nextInt(Bukkit.getServer().getOnlinePlayers().length);
-							Player target = Bukkit.getServer().getOnlinePlayers()[size];
-							player.teleport(target);
-							player.sendMessage(new ColorUtils().translateFromString("&cTeleporting you to &a" + target.getName()));
+							int size = random.nextInt(Bukkit.getServer().getOnlinePlayers().size());
+							Player randomPlayer = null;
+							for(Player each : Bukkit.getOnlinePlayers()){
+								if(size > 0){
+									size--;
+									continue;
+								}
+								randomPlayer = each;
+							}
+							player.teleport(randomPlayer);
+							player.sendMessage(new ColorUtils().translateFromString("&cTeleporting you to &a" + randomPlayer.getName()));
 							event.setCancelled(true);
 						}
 						else

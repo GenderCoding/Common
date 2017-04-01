@@ -41,7 +41,6 @@ public class FreezeListener implements Listener
 		return frozen.contains(player.getUniqueId());
 	}
 
-	@SuppressWarnings("deprecation")
 	public void setFreeze(Player player, Player target)
 	{
 		if (target.hasPermission("command.player.staff") || target.isOp())
@@ -71,7 +70,6 @@ public class FreezeListener implements Listener
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	public void removeFreeze(Player player, Player target)
 	{
 		alertTask.cancel();
@@ -110,7 +108,6 @@ public class FreezeListener implements Listener
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onProjectileLaunch(ProjectileLaunchEvent event)
 	{
@@ -187,7 +184,6 @@ public class FreezeListener implements Listener
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	public Player getPlayer(Entity entity)
 	{
 		if (entity instanceof Player) { return (Player) entity; }
@@ -220,7 +216,6 @@ public class FreezeListener implements Listener
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerQuit(PlayerQuitEvent event)
 	{
@@ -236,7 +231,6 @@ public class FreezeListener implements Listener
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event)
 	{
@@ -277,14 +271,14 @@ public class FreezeListener implements Listener
 			}
 
 			player.sendMessage(new ColorUtils().translateFromString(" "));
-			player.sendMessage(new ColorUtils().translateFromString("&f–ˆ–ˆ–ˆ–ˆ&c–ˆ&f–ˆ–ˆ–ˆ–ˆ"));
-			player.sendMessage(new ColorUtils().translateFromString("&f–ˆ–ˆ–ˆ&c–ˆ&6–ˆ&c–ˆ&f–ˆ–ˆ–ˆ"));
-			player.sendMessage(new ColorUtils().translateFromString("&f–ˆ–ˆ&c–ˆ&6–ˆ&0–ˆ&6–ˆ&c–ˆ&f–ˆ–ˆ &4&lDo NOT log out!"));
-			player.sendMessage(new ColorUtils().translateFromString("&f–ˆ–ˆ&c–ˆ&6–ˆ&0–ˆ&6–ˆ&c–ˆ&f–ˆ–ˆ &eIf you log out, you will be banned!"));
-			player.sendMessage(new ColorUtils().translateFromString("&f–ˆ&c–ˆ&6–ˆ–ˆ&0–ˆ&6–ˆ–ˆ&c–ˆ&f–ˆ &fPlease download Teamspeak and connect to:"));
-			player.sendMessage(new ColorUtils().translateFromString("&f–ˆ&c–ˆ&6–ˆ–ˆ–ˆ–ˆ–ˆ&c–ˆ&f–ˆ &fts.saifed.us"));
-			player.sendMessage(new ColorUtils().translateFromString("&c–ˆ&6–ˆ–ˆ–ˆ&0–ˆ&6–ˆ–ˆ–ˆ&c–ˆ"));
-			player.sendMessage(new ColorUtils().translateFromString("&c–ˆ–ˆ–ˆ–ˆ–ˆ–ˆ–ˆ–ˆ–ˆ"));
+			player.sendMessage(new ColorUtils().translateFromString("&fï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½&cï¿½ï¿½&fï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"));
+			player.sendMessage(new ColorUtils().translateFromString("&fï¿½ï¿½ï¿½ï¿½ï¿½ï¿½&cï¿½ï¿½&6ï¿½ï¿½&cï¿½ï¿½&fï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"));
+			player.sendMessage(new ColorUtils().translateFromString("&fï¿½ï¿½ï¿½ï¿½&cï¿½ï¿½&6ï¿½ï¿½&0ï¿½ï¿½&6ï¿½ï¿½&cï¿½ï¿½&fï¿½ï¿½ï¿½ï¿½ &4&lDo NOT log out!"));
+			player.sendMessage(new ColorUtils().translateFromString("&fï¿½ï¿½ï¿½ï¿½&cï¿½ï¿½&6ï¿½ï¿½&0ï¿½ï¿½&6ï¿½ï¿½&cï¿½ï¿½&fï¿½ï¿½ï¿½ï¿½ &eIf you log out, you will be banned!"));
+			player.sendMessage(new ColorUtils().translateFromString("&fï¿½ï¿½&cï¿½ï¿½&6ï¿½ï¿½ï¿½ï¿½&0ï¿½ï¿½&6ï¿½ï¿½ï¿½ï¿½&cï¿½ï¿½&fï¿½ï¿½ &fPlease download Teamspeak and connect to:"));
+			player.sendMessage(new ColorUtils().translateFromString("&fï¿½ï¿½&cï¿½ï¿½&6ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½&cï¿½ï¿½&fï¿½ï¿½ &fts.saifed.us"));
+			player.sendMessage(new ColorUtils().translateFromString("&cï¿½ï¿½&6ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½&0ï¿½ï¿½&6ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½&cï¿½ï¿½"));
+			player.sendMessage(new ColorUtils().translateFromString("&cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"));
 			player.sendMessage(new ColorUtils().translateFromString(" "));
 		}
 	}

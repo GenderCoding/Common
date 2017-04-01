@@ -4,22 +4,15 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.hqpots.core.Core;
 
 public class ListCommand implements CommandExecutor
 {
-	@SuppressWarnings("deprecation")
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
 	{
 		if (cmd.getName().equalsIgnoreCase("list"))
 		{
-			Player[] players = Bukkit.getOnlinePlayers();
-			int users = 0;
-			for (int i = 0; i < players.length; i++)
-			{
-				users++;
-			}
+			int users = Bukkit.getOnlinePlayers().size();
 			StringBuilder sb = new StringBuilder();
 			Core.getInstance();
 			if (Core.staff.isEmpty())

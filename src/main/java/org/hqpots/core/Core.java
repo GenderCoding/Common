@@ -33,7 +33,6 @@ import org.hqpots.core.commands.MuteChatCommand;
 import org.hqpots.core.commands.NightVisionCommand;
 import org.hqpots.core.commands.RenameCommand;
 import org.hqpots.core.commands.ReportCommand;
-import org.hqpots.core.commands.SpawnCommand;
 import org.hqpots.core.commands.StaffChatCommand;
 import org.hqpots.core.commands.StaffModeCommand;
 import org.hqpots.core.commands.login.LoginCommand;
@@ -49,14 +48,22 @@ import org.hqpots.core.listeners.JoinListeners;
 import org.hqpots.core.listeners.ListListener;
 import org.hqpots.core.listeners.MuteChatListener;
 import org.hqpots.core.listeners.StaffModeListener;
+import org.hqpots.core.redis.HQJedis;
+import org.hqpots.core.redis.RedisConfig;
 import org.hqpots.core.utils.ColorUtils;
 
 import lombok.Getter;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
+import redis.clients.jedis.Protocol;
 
 public class Core extends JavaPlugin implements Listener
 {
 	
 	@Getter public static Core instance;
+	@Getter public static RedisConfig redisConfig;
+	@Getter public static HQJedis hqJedis;
+	@Getter public static JedisPool pool;
 	private DB db;
 	public static ArrayList<String> staff = new ArrayList<>();
 	public static ArrayList<String> mod = new ArrayList<>();
@@ -67,6 +74,14 @@ public class Core extends JavaPlugin implements Listener
 	public void onEnable()
 	{
 		instance = this;
+		redisConfig = new RedisConfig("localhost", null);
+		JedisPoolConfig jpc = new JedisPoolConfig();
+		if(getRedisConfig().hasSecurity()){
+			pool = new JedisPool(jpc, getRedisConfig().getHost(), Protocol.DEFAULT_PORT, Protocol.DEFAULT_TIMEOUT, getRedisConfig().getPassword());
+		}else{
+			pool = new JedisPool(jpc, getRedisConfig().getHost(), Protocol.DEFAULT_PORT, Protocol.DEFAULT_TIMEOUT);
+		}
+		hqJedis = new HQJedis();
 		this.db = new DB();
 		setupFiles();
 		DonorBroadcast.enable();
@@ -87,7 +102,6 @@ public class Core extends JavaPlugin implements Listener
 		getCommand("setpin").setExecutor(new PinCommand());
 		getCommand("copyinv").setExecutor(new CopyInventoryCommand());
 		getCommand("mutechat").setExecutor(new MuteChatCommand());
-		getCommand("spawner").setExecutor(new SpawnCommand());
 		getCommand("ipreset").setExecutor(new IpResetCommand());
 		getCommand("cc").setExecutor(new ClearChatCommand());
 		getCommand("rename").setExecutor(new RenameCommand());

@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.hqpots.core.Core;
 import org.hqpots.core.utils.StringUtil;
 
 public class StaffChatCommand implements CommandExecutor 
@@ -23,9 +24,9 @@ public class StaffChatCommand implements CommandExecutor
 			return false;
 		}
 		
-		String message = StringUtil.colorize("&9(" + sender.getName() + ") &7:&f ");
+		String message = StringUtil.colorize("&9(" + Bukkit.getServerName() + ") &b" + sender.getName() + " &7:&f ");
 		message += StringUtil.join(" ", args);
-		Bukkit.broadcast(message, "command.staffchat");
+		Core.getHqJedis().send("hq_staffchat", message);
 		
 		return false;
 	}

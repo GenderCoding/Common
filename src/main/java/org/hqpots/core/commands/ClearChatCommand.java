@@ -10,7 +10,6 @@ import org.hqpots.core.utils.ColorUtils;
 
 public class ClearChatCommand implements CommandExecutor
 {
-	@SuppressWarnings("deprecation")
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] arguments)
 	{
 		if (sender.hasPermission("command.clearchat"))
