@@ -2,6 +2,7 @@ package org.hqpots.core.redis;
 
 import org.bukkit.Bukkit;
 import org.hqpots.core.Core;
+import org.hqpots.core.utils.StringUtil;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPubSub;
@@ -25,6 +26,9 @@ public class HQJedis extends JedisPubSub
 			pubSubJedis.subscribe(this, "hq_staffchat");
 		});
 		thread.start();
+		if(getJedis().isConnected()){
+			Bukkit.getConsoleSender().sendMessage(StringUtil.colorize("&aMOTHER FUCKING REDIS CONNECTED BITCHES"));
+		}
 	}
 
 	public void send(String channel, String message)
@@ -57,7 +61,7 @@ public class HQJedis extends JedisPubSub
 	{
 		if(channel.equals("hq_staffchat")){
 			Bukkit.broadcast(message, "command.staffchat");
-			System.out.println(message);
+			Bukkit.getConsoleSender().sendMessage(message);
 		}
 	}
 
