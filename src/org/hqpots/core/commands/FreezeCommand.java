@@ -14,68 +14,65 @@ import org.hqpots.core.utils.ColorUtils;
 
 public class FreezeCommand implements CommandExecutor, TabCompleter
 {
-  private final Core utilities = Core.getInstance();
-    
-  @Override
-  public boolean onCommand(CommandSender sender, Command command, String label, String[] arguments)
-  {
-    if (!(sender instanceof Player))
-    {
-      sender.sendMessage(new ColorUtils().translateFromString("&cYou can not execute this command on console."));
-      return false;
-    }
-    
-    Player player = (Player) sender;
-    if (player.hasPermission("command.freeze"))
-    {
-      if (arguments.length == 0 || arguments.length > 1)
-      { 
-        player.sendMessage(new ColorUtils().translateFromString("&cUsage: /" + label + " <playerName>"));
-        return true;
-      }
-      
-      if (arguments.length == 1)
-      {
-        Player target = Bukkit.getServer().getPlayerExact(arguments[0]);
-        if (target == null)
-        {
-          player.sendMessage(new ColorUtils().translateFromString("&cPlayer named '" + arguments[0] + "' not found."));
-        }
-        else
-        {
-          if (target.equals(player))
-          {
-            player.sendMessage(new ColorUtils().translateFromString("&cYou can not freeze yourself."));
-          }
-          else
-          {
-            if (utilities.getFreezeListener().isFrozen(target))
-            {
-              utilities.getFreezeListener().removeFreeze(player, target);
-            }
-            else
-            {
-              utilities.getFreezeListener().setFreeze(player, target);
-            }
-          }
-        }
-      }
-    }
-    else
-    {
-      player.sendMessage(new ColorUtils().translateFromString("&cYou do not have permissions to execute this command."));
-    }
-    
-    return true;
-  }
-  
-  @Override
-  public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] arguments)
-  {
-    if (arguments.length > 1)
-    {
-      return Collections.emptyList();
-    }
-    return null;
-  }
+	private final Core utilities = Core.getInstance();
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] arguments)
+	{
+		if (!(sender instanceof Player))
+		{
+			sender.sendMessage(new ColorUtils().translateFromString("&cYou can not execute this command on console."));
+			return false;
+		}
+
+		Player player = (Player) sender;
+		if (player.hasPermission("command.freeze"))
+		{
+			if (arguments.length == 0 || arguments.length > 1)
+			{
+				player.sendMessage(new ColorUtils().translateFromString("&cUsage: /" + label + " <playerName>"));
+				return true;
+			}
+
+			if (arguments.length == 1)
+			{
+				Player target = Bukkit.getServer().getPlayerExact(arguments[0]);
+				if (target == null)
+				{
+					player.sendMessage(new ColorUtils().translateFromString("&cPlayer named '" + arguments[0] + "' not found."));
+				}
+				else
+				{
+					if (target.equals(player))
+					{
+						player.sendMessage(new ColorUtils().translateFromString("&cYou can not freeze yourself."));
+					}
+					else
+					{
+						if (utilities.getFreezeListener().isFrozen(target))
+						{
+							utilities.getFreezeListener().removeFreeze(player, target);
+						}
+						else
+						{
+							utilities.getFreezeListener().setFreeze(player, target);
+						}
+					}
+				}
+			}
+		}
+		else
+		{
+			player.sendMessage(new ColorUtils().translateFromString("&cYou do not have permissions to execute this command."));
+		}
+
+		return true;
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] arguments)
+	{
+		if (arguments.length > 1) { return Collections.emptyList(); }
+		return null;
+	}
 }

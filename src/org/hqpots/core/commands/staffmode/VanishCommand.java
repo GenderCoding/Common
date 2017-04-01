@@ -13,55 +13,52 @@ import org.hqpots.core.utils.ColorUtils;
 
 public class VanishCommand implements CommandExecutor, TabCompleter
 {
-  private final Core utilities = Core.getInstance();
-    
-  @Override
-  public boolean onCommand(CommandSender sender, Command command, String label, String[] arguments)
-  {
-    if (!(sender instanceof Player))
-    {
-      sender.sendMessage(new ColorUtils().translateFromString("&cYou can not execute this command on console."));
-      return false;
-    }
-    
-    Player player = (Player) sender;
-    if (player.hasPermission("command.vanish"))
-    {
-      if (arguments.length > 0)
-      { 
-        player.sendMessage(new ColorUtils().translateFromString("&cUsage: /" + label));
-        return true;
-      }
-      
-      if (arguments.length == 0)
-      {
-        if (utilities.getStaffModeListener().isVanished(player))
-        {
-          utilities.getStaffModeListener().setVanished(player, false);
-          player.sendMessage(new ColorUtils().translateFromString("&eYou have &cdisabled &eyour vanish mode."));
-        }
-        else
-        {
-          utilities.getStaffModeListener().setVanished(player, true);
-          player.sendMessage(new ColorUtils().translateFromString("&eYou have &aenabled &eyour vanish mode."));
-        }
-      }
-    }
-    else
-    {
-      player.sendMessage(new ColorUtils().translateFromString("&cYou do not have permissions to execute this command."));
-    }
-    
-    return true;
-  }
-  
-  @Override
-  public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] arguments)
-  {
-    if (arguments.length > 1)
-    {
-      return Collections.emptyList();
-    }
-    return null;
-  }
+	private final Core utilities = Core.getInstance();
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] arguments)
+	{
+		if (!(sender instanceof Player))
+		{
+			sender.sendMessage(new ColorUtils().translateFromString("&cYou can not execute this command on console."));
+			return false;
+		}
+
+		Player player = (Player) sender;
+		if (player.hasPermission("command.vanish"))
+		{
+			if (arguments.length > 0)
+			{
+				player.sendMessage(new ColorUtils().translateFromString("&cUsage: /" + label));
+				return true;
+			}
+
+			if (arguments.length == 0)
+			{
+				if (utilities.getStaffModeListener().isVanished(player))
+				{
+					utilities.getStaffModeListener().setVanished(player, false);
+					player.sendMessage(new ColorUtils().translateFromString("&eYou have &cdisabled &eyour vanish mode."));
+				}
+				else
+				{
+					utilities.getStaffModeListener().setVanished(player, true);
+					player.sendMessage(new ColorUtils().translateFromString("&eYou have &aenabled &eyour vanish mode."));
+				}
+			}
+		}
+		else
+		{
+			player.sendMessage(new ColorUtils().translateFromString("&cYou do not have permissions to execute this command."));
+		}
+
+		return true;
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] arguments)
+	{
+		if (arguments.length > 1) { return Collections.emptyList(); }
+		return null;
+	}
 }

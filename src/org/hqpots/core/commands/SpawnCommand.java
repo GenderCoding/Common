@@ -14,27 +14,35 @@ import com.doctordark.util.ItemBuilder;
 import net.md_5.bungee.api.ChatColor;
 import net.minecraft.util.org.apache.commons.lang3.text.WordUtils;
 
-public class SpawnCommand implements CommandExecutor {
-	
-	public String C(String msg) {
+public class SpawnCommand implements CommandExecutor
+{
+
+	public String C(String msg)
+	{
 		return ChatColor.translateAlternateColorCodes('&', msg);
 	}
-	
-	public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
+
+	public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args)
+	{
 		Player player = (Player) sender;
-		if(command.getName().equalsIgnoreCase("spawner")) {
-			if(!player.hasPermission("command.spawner")) {
+		if (command.getName().equalsIgnoreCase("spawner"))
+		{
+			if (!player.hasPermission("command.spawner"))
+			{
 				player.sendMessage(PermissionsAPI.PERMISSION);
 				return true;
 			}
-			if(args.length == 0) {
+			if (args.length == 0)
+			{
 				sender.sendMessage(ChatColor.RED + "Usage: /spawner <MobType>");
 				return false;
 			}
 			String spawner = args[0];
-			Player p = (Player)sender;
+			Player p = (Player) sender;
 			Inventory inv = p.getInventory();
-			inv.addItem(new ItemStack[] { new ItemBuilder(Material.MOB_SPAWNER).displayName(ChatColor.GREEN + "Spawner").loreLine(ChatColor.WHITE + WordUtils.capitalizeFully(spawner)).build() });
+			inv.addItem(new ItemStack[] {
+					new ItemBuilder(Material.MOB_SPAWNER).displayName(ChatColor.GREEN + "Spawner").loreLine(ChatColor.WHITE + WordUtils.capitalizeFully(spawner)).build()
+			});
 			p.sendMessage(C("&cYou just got a &e" + spawner + "&c."));
 			return false;
 		}

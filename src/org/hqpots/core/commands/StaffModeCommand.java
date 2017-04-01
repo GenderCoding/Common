@@ -13,55 +13,52 @@ import org.hqpots.core.utils.ColorUtils;
 
 public class StaffModeCommand implements CommandExecutor, TabCompleter
 {
-  private final Core utilities = Core.getInstance();
-    
-  @Override
-  public boolean onCommand(CommandSender sender, Command command, String label, String[] arguments)
-  {
-    if (!(sender instanceof Player))
-    {
-      sender.sendMessage(new ColorUtils().translateFromString("&cYou can not execute this command on console."));
-      return false;
-    }
-    
-    Player player = (Player) sender;
-    if (player.hasPermission("command.staffmode"))
-    {
-      if (arguments.length > 0)
-      { 
-        player.sendMessage(new ColorUtils().translateFromString("&cUsage: /" + label));
-        return true;
-      }
-      
-      if (arguments.length == 0)
-      {
-        if (utilities.getStaffModeListener().isStaffModeActive(player))
-        {
-          utilities.getStaffModeListener().setStaffMode(player, false);
-          player.sendMessage(new ColorUtils().translateFromString("&eYou have &cdisabled &eyour staffmode."));
-        }
-        else
-        {
-          utilities.getStaffModeListener().setStaffMode(player, true);
-          player.sendMessage(new ColorUtils().translateFromString("&eYou have &aenabled &eyour staffmode."));
-        }
-      }
-    }
-    else
-    {
-      player.sendMessage(new ColorUtils().translateFromString("&cYou do not have permissions to execute this command."));
-    }
-    
-    return true;
-  }
-  
-  @Override
-  public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] arguments)
-  {
-    if (arguments.length > 1)
-    {
-      return Collections.emptyList();
-    }
-    return null;
-  }
+	private final Core utilities = Core.getInstance();
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] arguments)
+	{
+		if (!(sender instanceof Player))
+		{
+			sender.sendMessage(new ColorUtils().translateFromString("&cYou can not execute this command on console."));
+			return false;
+		}
+
+		Player player = (Player) sender;
+		if (player.hasPermission("command.staffmode"))
+		{
+			if (arguments.length > 0)
+			{
+				player.sendMessage(new ColorUtils().translateFromString("&cUsage: /" + label));
+				return true;
+			}
+
+			if (arguments.length == 0)
+			{
+				if (utilities.getStaffModeListener().isStaffModeActive(player))
+				{
+					utilities.getStaffModeListener().setStaffMode(player, false);
+					player.sendMessage(new ColorUtils().translateFromString("&eYou have &cdisabled &eyour staffmode."));
+				}
+				else
+				{
+					utilities.getStaffModeListener().setStaffMode(player, true);
+					player.sendMessage(new ColorUtils().translateFromString("&eYou have &aenabled &eyour staffmode."));
+				}
+			}
+		}
+		else
+		{
+			player.sendMessage(new ColorUtils().translateFromString("&cYou do not have permissions to execute this command."));
+		}
+
+		return true;
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] arguments)
+	{
+		if (arguments.length > 1) { return Collections.emptyList(); }
+		return null;
+	}
 }
