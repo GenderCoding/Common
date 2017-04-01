@@ -35,7 +35,7 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.hqpots.core.Core;
-import org.hqpots.core.utils.ColorUtils;
+import org.hqpots.core.utils.StringUtil;
 
 public class StaffModeListener implements Listener
 {
@@ -109,7 +109,7 @@ public class StaffModeListener implements Listener
 			}
 			else
 			{
-				player.sendMessage(new ColorUtils().translateFromString("&cYou do not have permissions to enable the staffmode."));
+				player.sendMessage(StringUtil.colorize("&cYou do not have permissions to enable the staffmode."));
 			}
 		}
 		else
@@ -177,52 +177,49 @@ public class StaffModeListener implements Listener
 
 		ItemStack compass = new ItemStack(Material.COMPASS, 1);
 		ItemMeta compassMeta = compass.getItemMeta();
-		compassMeta.setDisplayName(new ColorUtils().translateFromString("&bTeleport Compass"));
-		compassMeta.setLore(new ColorUtils().translateFromArray(Arrays.asList(new String[] {
-				"&7Right click block: Move through",
-				"&7Left click: Move to block in line of sight"
-		})));
+		compassMeta.setDisplayName(StringUtil.colorize("&bTeleport Compass"));
+		compassMeta.setLore(Arrays.asList(StringUtil.colorize("&7Right click block: Move through"), StringUtil.colorize("&7Left click: Move to block in line of sight")));
 		compass.setItemMeta(compassMeta);
 
 		ItemStack book = new ItemStack(Material.BOOK, 1);
 		ItemMeta bookMeta = book.getItemMeta();
-		bookMeta.setDisplayName(new ColorUtils().translateFromString("&bInspection Tool"));
-		bookMeta.setLore(new ColorUtils().translateFromArray(Arrays.asList(new String[] {
-				"&7Right click player to inspect inventory"
-		})));
+		bookMeta.setDisplayName(StringUtil.colorize("&bInspection Tool"));
+		bookMeta.setLore(Arrays.asList(
+				StringUtil.colorize("&7Right click player to inspect inventory")
+		));
 		book.setItemMeta(bookMeta);
 
 		ItemStack woodAxe = new ItemStack(Material.WOOD_AXE, 1);
 		ItemMeta woodAxeMeta = woodAxe.getItemMeta();
-		woodAxeMeta.setDisplayName(new ColorUtils().translateFromString("&bWorldEdit Wand"));
-		woodAxeMeta.setLore(new ColorUtils().translateFromArray(Arrays.asList(new String[] {
-				"&7Left click block: Select first position",
-				"&7Right click block: Select second position"
-		})));
+		woodAxeMeta.setDisplayName(StringUtil.colorize("&bWorldEdit Wand"));
+		woodAxeMeta.setLore(Arrays.asList(
+				StringUtil.colorize("&7Left click block: Select first position"),
+				StringUtil.colorize("&7Right click block: Select second position")
+		));
 		woodAxe.setItemMeta(woodAxeMeta);
 
 		ItemStack carpet = new ItemStack(Material.CARPET, 1, (short) 3);
 		ItemMeta carpetMeta = carpet.getItemMeta();
-		carpetMeta.setDisplayName(new ColorUtils().translateFromString("&bBetter Vision"));
-		carpetMeta.setLore(new ColorUtils().translateFromArray(Arrays.asList(new String[] {
-				"&7Used to get a better vision to your target"
-		})));
+		carpetMeta.setDisplayName(StringUtil.colorize("&bBetter Vision"));
+		carpetMeta.setLore(Arrays.asList(
+				StringUtil.colorize("&7Used to get a better vision to your target")
+		));
 		carpet.setItemMeta(carpetMeta);
 
 		ItemStack diamondPickaxe = new ItemStack(Material.DIAMOND_PICKAXE, 1);
 		ItemMeta diamondPickaxeMeta = diamondPickaxe.getItemMeta();
-		diamondPickaxeMeta.setDisplayName(new ColorUtils().translateFromString("&bXrayer Finder"));
-		diamondPickaxeMeta.setLore(new ColorUtils().translateFromArray(Arrays.asList(new String[] {
-				"&7Right click to open the xrayer finder menu"
-		})));
+		diamondPickaxeMeta.setDisplayName(StringUtil.colorize("&bXrayer Finder"));
+		diamondPickaxeMeta.setLore(Arrays.asList(
+				StringUtil.colorize("&7Right click to open the xrayer finder menu")
+		));
 		diamondPickaxe.setItemMeta(diamondPickaxeMeta);
 
 		ItemStack record10 = new ItemStack(Material.RECORD_10, 1);
 		ItemMeta record10Meta = record10.getItemMeta();
-		record10Meta.setDisplayName(new ColorUtils().translateFromString("&bRandom Teleportation"));
-		record10Meta.setLore(new ColorUtils().translateFromArray(Arrays.asList(new String[] {
-				"&7Right click to teleport to a random player"
-		})));
+		record10Meta.setDisplayName(StringUtil.colorize("&bRandom Teleportation"));
+		record10Meta.setLore(Arrays.asList(
+				StringUtil.colorize("&7Right click to teleport to a random player")
+		));
 		record10.setItemMeta(record10Meta);
 
 		playerInventory.setItem(0, compass);
@@ -242,20 +239,20 @@ public class StaffModeListener implements Listener
 		{
 			inkSack = new ItemStack(Material.INK_SACK, 1, (short) 8);
 			ItemMeta inkSackMeta = inkSack.getItemMeta();
-			inkSackMeta.setDisplayName(new ColorUtils().translateFromString("&bVanished: &aTrue"));
-			inkSackMeta.setLore(new ColorUtils().translateFromArray(Arrays.asList(new String[] {
-					"&7Right click to update your vanish status."
-			})));
+			inkSackMeta.setDisplayName(StringUtil.colorize("&bVanished: &aTrue"));
+			inkSackMeta.setLore(Arrays.asList(
+					StringUtil.colorize("&7Right click to update your vanish status.")
+			));
 			inkSack.setItemMeta(inkSackMeta);
 		}
 		else
 		{
 			inkSack = new ItemStack(Material.INK_SACK, 1, (short) 10);
 			ItemMeta inkSackMeta = inkSack.getItemMeta();
-			inkSackMeta.setDisplayName(new ColorUtils().translateFromString("&bVanished: &cFalse"));
-			inkSackMeta.setLore(new ColorUtils().translateFromArray(Arrays.asList(new String[] {
-					"&7Right click to update your vanish status."
-			})));
+			inkSackMeta.setDisplayName(StringUtil.colorize("&bVanished: &cFalse"));
+			inkSackMeta.setLore(Arrays.asList(
+					StringUtil.colorize("&7Right click to update your vanish status.")
+			));
 			inkSack.setItemMeta(inkSackMeta);
 		}
 
@@ -264,7 +261,7 @@ public class StaffModeListener implements Listener
 
 	public void openInspectionMenu(Player player, Player target)
 	{
-		Inventory inventory = Bukkit.getServer().createInventory(null, 54, new ColorUtils().translateFromString("&eInspecting: &c" + target.getName()));
+		Inventory inventory = Bukkit.getServer().createInventory(null, 54, StringUtil.colorize("&eInspecting: &c" + target.getName()));
 
 		new BukkitRunnable()
 		{
@@ -277,17 +274,17 @@ public class StaffModeListener implements Listener
 
 				ItemStack speckledMelon = new ItemStack(Material.SPECKLED_MELON, (int) ((CraftPlayer) target).getHealth());
 				ItemMeta speckledMelonMeta = speckledMelon.getItemMeta();
-				speckledMelonMeta.setDisplayName(new ColorUtils().translateFromString("&aHealth"));
+				speckledMelonMeta.setDisplayName(StringUtil.colorize("&aHealth"));
 				speckledMelon.setItemMeta(speckledMelonMeta);
 
 				ItemStack cookedBeef = new ItemStack(Material.COOKED_BEEF, target.getFoodLevel());
 				ItemMeta cookedBeefMeta = cookedBeef.getItemMeta();
-				cookedBeefMeta.setDisplayName(new ColorUtils().translateFromString("&aHunger"));
+				cookedBeefMeta.setDisplayName(StringUtil.colorize("&aHunger"));
 				cookedBeef.setItemMeta(cookedBeefMeta);
 
 				ItemStack brewingStand = new ItemStack(Material.BREWING_STAND_ITEM, target.getPlayer().getActivePotionEffects().size());
 				ItemMeta brewingStandMeta = brewingStand.getItemMeta();
-				brewingStandMeta.setDisplayName(new ColorUtils().translateFromString("&aActive Potion Effects"));
+				brewingStandMeta.setDisplayName(StringUtil.colorize("&aActive Potion Effects"));
 				ArrayList<String> brewingStandLore = new ArrayList<>();
 //				for (PotionEffect potionEffect : target.getPlayer().getActivePotionEffects())
 //				{
@@ -295,7 +292,7 @@ public class StaffModeListener implements Listener
 //					int effectLevel = potionEffect.getAmplifier();
 //					effectLevel++;
 //					// brewingStandLore.add(new
-//					// ColorUtils().translateFromString("&e" +
+//					// StringUtil.colorize("&e" +
 //					// WordUtils.capitalizeFully(effectName).replace("_", " ") +
 //					// " " + effectLevel + "&7: &c" +
 //					// TimeUtils.IntegerCountdown.setFormat(potionEffect.getDuration()
@@ -306,29 +303,29 @@ public class StaffModeListener implements Listener
 
 				ItemStack compass = new ItemStack(Material.COMPASS, 1);
 				ItemMeta compassMeta = compass.getItemMeta();
-				compassMeta.setDisplayName(new ColorUtils().translateFromString("&aPlayer Location"));
-				compassMeta.setLore(new ColorUtils().translateFromArray(Arrays.asList(new String[] {
-						"&eWorld&7: &a" + player.getWorld().getName(),
-						"&eCoords",
-						"  &eX&7: &c" + target.getLocation().getBlockX(),
-						"  &eY&7: &c" + target.getLocation().getBlockY(),
-						"  &eZ&7: &c" + target.getLocation().getBlockZ()
-				})));
+				compassMeta.setDisplayName(StringUtil.colorize("&aPlayer Location"));
+				compassMeta.setLore(Arrays.asList(
+						StringUtil.colorize("&eWorld&7: &a" + player.getWorld().getName()),
+						StringUtil.colorize("&eCoords"),
+						StringUtil.colorize("  &eX&7: &c" + target.getLocation().getBlockX()),
+						StringUtil.colorize("  &eY&7: &c" + target.getLocation().getBlockY()),
+						StringUtil.colorize("  &eZ&7: &c" + target.getLocation().getBlockZ())
+				));
 				compass.setItemMeta(compassMeta);
 
 				ItemStack magmaCream = new ItemStack(Material.MAGMA_CREAM, 1);
 				ItemMeta magmaCreamMeta = magmaCream.getItemMeta();
 				if (utilities.getFreezeListener().isFrozen(target))
 				{
-					magmaCreamMeta.setDisplayName(new ColorUtils().translateFromString("&aFrozen&7: &aTrue"));
+					magmaCreamMeta.setDisplayName(StringUtil.colorize("&aFrozen&7: &aTrue"));
 				}
 				else
 				{
-					magmaCreamMeta.setDisplayName(new ColorUtils().translateFromString("&aFrozen&7: &cFalse"));
+					magmaCreamMeta.setDisplayName(StringUtil.colorize("&aFrozen&7: &cFalse"));
 				}
-				magmaCreamMeta.setLore(new ColorUtils().translateFromArray(Arrays.asList(new String[] {
-						"&eClick to update freeze status"
-				})));
+				magmaCreamMeta.setLore(Arrays.asList(
+						StringUtil.colorize("&eClick to update freeze status")
+				));
 				magmaCream.setItemMeta(magmaCreamMeta);
 
 				ItemStack orangeGlassPane = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 1);
@@ -353,22 +350,23 @@ public class StaffModeListener implements Listener
 					inventory.setItem(i, orangeGlassPane);
 				}
 
-				if (!player.getOpenInventory().getTitle().equals(new ColorUtils().translateFromString("&eInspecting: &c" + target.getName())))
+				if (!player.getOpenInventory().getTitle().equals(StringUtil.colorize("&eInspecting: &c" + target.getName())))
 				{
 					cancel();
 					inspectedPlayer.remove(player.getUniqueId());
 				}
 			}
-		}.runTaskTimer(utilities, 0L, 5L);
+		}.runTaskTimer(utilities,0L,5L);
 
-		player.openInventory(inventory);
+	player.openInventory(inventory);
+
 	}
 
 	@EventHandler
 	public void onClickInspectionMenu(InventoryClickEvent event)
 	{
 		Player player = (Player) event.getWhoClicked();
-		if (event.getInventory().getTitle().contains(new ColorUtils().translateFromString("&eInspecting: ")))
+		if (event.getInventory().getTitle().contains(StringUtil.colorize("&eInspecting: ")))
 		{
 			Player inspected = getInspectedPlayer(player);
 			if (event.getRawSlot() == 51)
@@ -396,7 +394,7 @@ public class StaffModeListener implements Listener
 		{
 			event.setCancelled(true);
 		}
-		if (event.getClickedInventory() != null && event.getClickedInventory().getTitle().contains(new ColorUtils().translateFromString("&eInspecting: ")))
+		if (event.getClickedInventory() != null && event.getClickedInventory().getTitle().contains(StringUtil.colorize("&eInspecting: ")))
 		{
 			event.setCancelled(true);
 		}
@@ -411,7 +409,7 @@ public class StaffModeListener implements Listener
 			ItemStack itemStack = player.getItemInHand();
 			if (itemStack.hasItemMeta())
 			{
-				if (itemStack.getItemMeta().getDisplayName().equals(new ColorUtils().translateFromString("&bInspection Tool")))
+				if (itemStack.getItemMeta().getDisplayName().equals(StringUtil.colorize("&bInspection Tool")))
 				{
 					if (isStaffModeActive(player) && player.hasPermission("command.player.staff"))
 					{
@@ -419,13 +417,13 @@ public class StaffModeListener implements Listener
 						if (target != null && !player.getName().equals(target.getName()))
 						{
 							openInspectionMenu(player, target);
-							player.sendMessage(new ColorUtils().translateFromString("&eYou are now inspecting the inventory of &c" + target.getName() + "&e."));
+							player.sendMessage(StringUtil.colorize("&eYou are now inspecting the inventory of &c" + target.getName() + "&e."));
 						}
 					}
 					else
 					{
 						setStaffMode(player, false);
-						player.sendMessage(new ColorUtils().translateFromString("&cYour staffmode has been disabled cause you do not have permissions to use them."));
+						player.sendMessage(StringUtil.colorize("&cYour staffmode has been disabled cause you do not have permissions to use them."));
 					}
 				}
 			}
@@ -442,7 +440,7 @@ public class StaffModeListener implements Listener
 			ItemStack itemStack = player.getItemInHand();
 			if (itemStack.hasItemMeta())
 			{
-				if (itemStack.getItemMeta().getDisplayName().equals(new ColorUtils().translateFromString("&bRandom Teleportation")))
+				if (itemStack.getItemMeta().getDisplayName().equals(StringUtil.colorize("&bRandom Teleportation")))
 				{
 					if (isStaffModeActive(player) && player.hasPermission("command.player.staff"))
 					{
@@ -459,18 +457,18 @@ public class StaffModeListener implements Listener
 								randomPlayer = each;
 							}
 							player.teleport(randomPlayer);
-							player.sendMessage(new ColorUtils().translateFromString("&cTeleporting you to &a" + randomPlayer.getName()));
+							player.sendMessage(StringUtil.colorize("&cTeleporting you to &a" + randomPlayer.getName()));
 							event.setCancelled(true);
 						}
 						else
 						{
-							player.sendMessage(new ColorUtils().translateFromString("&cCould not find players to teleport."));
+							player.sendMessage(StringUtil.colorize("&cCould not find players to teleport."));
 						}
 					}
 					else
 					{
 						setStaffMode(player, false);
-						player.sendMessage(new ColorUtils().translateFromString("&cYour staffmode has been disabled cause you do not have permissions to use them."));
+						player.sendMessage(StringUtil.colorize("&cYour staffmode has been disabled cause you do not have permissions to use them."));
 					}
 				}
 			}
@@ -487,7 +485,7 @@ public class StaffModeListener implements Listener
 			ItemStack itemStack = player.getItemInHand();
 			if (itemStack.hasItemMeta())
 			{
-				if (itemStack.getItemMeta().getDisplayName().contains(new ColorUtils().translateFromString("&bVanished:")))
+				if (itemStack.getItemMeta().getDisplayName().contains(StringUtil.colorize("&bVanished:")))
 				{
 					if (isStaffModeActive(player) && player.hasPermission("command.player.staff"))
 					{
@@ -503,7 +501,7 @@ public class StaffModeListener implements Listener
 					else
 					{
 						setStaffMode(player, false);
-						player.sendMessage(new ColorUtils().translateFromString("&cYour staffmode has been disabled cause you do not have permissions to use them."));
+						player.sendMessage(StringUtil.colorize("&cYour staffmode has been disabled cause you do not have permissions to use them."));
 					}
 				}
 			}
@@ -644,7 +642,7 @@ public class StaffModeListener implements Listener
 				if (isStaffModeActive(player))
 				{
 					setStaffMode(player, false);
-					player.sendMessage(new ColorUtils().translateFromString("&cYour staffmode has been disabled cause you do not have permissions to use them."));
+					player.sendMessage(StringUtil.colorize("&cYour staffmode has been disabled cause you do not have permissions to use them."));
 				}
 			}
 		}
@@ -660,7 +658,7 @@ public class StaffModeListener implements Listener
 				if (isStaffModeActive(player))
 				{
 					setStaffMode(player, false);
-					player.sendMessage(new ColorUtils().translateFromString("&cYour staffmode has been disabled cause you do not have permissions to use them."));
+					player.sendMessage(StringUtil.colorize("&cYour staffmode has been disabled cause you do not have permissions to use them."));
 				}
 			}
 		}

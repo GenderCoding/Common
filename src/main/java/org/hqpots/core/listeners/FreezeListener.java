@@ -26,7 +26,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.hqpots.core.Core;
-import org.hqpots.core.utils.ColorUtils;
+import org.hqpots.core.utils.StringUtil;
 
 public class FreezeListener implements Listener
 {
@@ -45,7 +45,7 @@ public class FreezeListener implements Listener
 	{
 		if (target.hasPermission("command.player.staff") || target.isOp())
 		{
-			player.sendMessage(new ColorUtils().translateFromString("&cYou can not freeze staff members."));
+			player.sendMessage(StringUtil.colorize("&cYou can not freeze staff members."));
 		}
 		else
 		{
@@ -59,11 +59,11 @@ public class FreezeListener implements Listener
 				{
 					if (staff.equals(player))
 					{
-						player.sendMessage(new ColorUtils().translateFromString("&c" + target.getName() + " &eis now frozen."));
+						player.sendMessage(StringUtil.colorize("&c" + target.getName() + " &eis now frozen."));
 					}
 					else
 					{
-						staff.sendMessage(new ColorUtils().translateFromString("&c" + target.getName() + " &eis now frozen, frozen by &a" + player.getName() + "&e."));
+						staff.sendMessage(StringUtil.colorize("&c" + target.getName() + " &eis now frozen, frozen by &a" + player.getName() + "&e."));
 					}
 				}
 			}
@@ -74,7 +74,7 @@ public class FreezeListener implements Listener
 	{
 		alertTask.cancel();
 		frozen.remove(target.getUniqueId());
-		target.sendMessage(new ColorUtils().translateFromString("&aYou are not longer frozen."));
+		target.sendMessage(StringUtil.colorize("&aYou are not longer frozen."));
 
 		for (Player staff : Bukkit.getServer().getOnlinePlayers())
 		{
@@ -82,11 +82,11 @@ public class FreezeListener implements Listener
 			{
 				if (staff.equals(player))
 				{
-					player.sendMessage(new ColorUtils().translateFromString("&c" + target.getName() + " &eis no longer frozen."));
+					player.sendMessage(StringUtil.colorize("&c" + target.getName() + " &eis no longer frozen."));
 				}
 				else
 				{
-					staff.sendMessage(new ColorUtils().translateFromString("&c" + target.getName() + " &eis no longer frozen, removed by &a" + player.getName() + "&e."));
+					staff.sendMessage(StringUtil.colorize("&c" + target.getName() + " &eis no longer frozen, removed by &a" + player.getName() + "&e."));
 				}
 			}
 		}
@@ -116,7 +116,7 @@ public class FreezeListener implements Listener
 		if (isFrozen(player))
 		{
 			event.setCancelled(true);
-			player.sendMessage(new ColorUtils().translateFromString("&cYou can not interact with that item while you are frozen."));
+			player.sendMessage(StringUtil.colorize("&cYou can not interact with that item while you are frozen."));
 		}
 	}
 
@@ -127,7 +127,7 @@ public class FreezeListener implements Listener
 		if (isFrozen(player))
 		{
 			event.setCancelled(true);
-			player.sendMessage(new ColorUtils().translateFromString("&cYou can not use commands while you are frozen."));
+			player.sendMessage(StringUtil.colorize("&cYou can not use commands while you are frozen."));
 		}
 	}
 
@@ -140,7 +140,7 @@ public class FreezeListener implements Listener
 			if (isFrozen(player))
 			{
 				event.setCancelled(true);
-				player.sendMessage(new ColorUtils().translateFromString("&cYou can not place blocks while you are frozen."));
+				player.sendMessage(StringUtil.colorize("&cYou can not place blocks while you are frozen."));
 			}
 		}
 	}
@@ -155,7 +155,7 @@ public class FreezeListener implements Listener
 			if (isFrozen(player))
 			{
 				event.setCancelled(true);
-				player.sendMessage(new ColorUtils().translateFromString("&cYou can not break blocks while you are frozen."));
+				player.sendMessage(StringUtil.colorize("&cYou can not break blocks while you are frozen."));
 			}
 		}
 	}
@@ -204,13 +204,13 @@ public class FreezeListener implements Listener
 		{
 			if (utilities.getFreezeListener().isFrozen(damager))
 			{
-				damager.sendMessage(new ColorUtils().translateFromString("&cYou can not attack players while frozen."));
+				damager.sendMessage(StringUtil.colorize("&cYou can not attack players while frozen."));
 				event.setCancelled(true);
 			}
 
 			if (utilities.getFreezeListener().isFrozen(damaged))
 			{
-				damager.sendMessage(new ColorUtils().translateFromString("&cYou can not attack " + damaged.getName() + " because he is currently frozen."));
+				damager.sendMessage(StringUtil.colorize("&cYou can not attack " + damaged.getName() + " because he is currently frozen."));
 				event.setCancelled(true);
 			}
 		}
@@ -270,16 +270,16 @@ public class FreezeListener implements Listener
 				player.removePotionEffect(potionEffect.getType());
 			}
 
-			player.sendMessage(new ColorUtils().translateFromString(" "));
-			player.sendMessage(new ColorUtils().translateFromString("&f��������&c��&f��������"));
-			player.sendMessage(new ColorUtils().translateFromString("&f������&c��&6��&c��&f������"));
-			player.sendMessage(new ColorUtils().translateFromString("&f����&c��&6��&0��&6��&c��&f���� &4&lDo NOT log out!"));
-			player.sendMessage(new ColorUtils().translateFromString("&f����&c��&6��&0��&6��&c��&f���� &eIf you log out, you will be banned!"));
-			player.sendMessage(new ColorUtils().translateFromString("&f��&c��&6����&0��&6����&c��&f�� &fPlease download Teamspeak and connect to:"));
-			player.sendMessage(new ColorUtils().translateFromString("&f��&c��&6����������&c��&f�� &fts.saifed.us"));
-			player.sendMessage(new ColorUtils().translateFromString("&c��&6������&0��&6������&c��"));
-			player.sendMessage(new ColorUtils().translateFromString("&c������������������"));
-			player.sendMessage(new ColorUtils().translateFromString(" "));
+			player.sendMessage(StringUtil.colorize(" "));
+			player.sendMessage(StringUtil.colorize("&f��������&c��&f��������"));
+			player.sendMessage(StringUtil.colorize("&f������&c��&6��&c��&f������"));
+			player.sendMessage(StringUtil.colorize("&f����&c��&6��&0��&6��&c��&f���� &4&lDo NOT log out!"));
+			player.sendMessage(StringUtil.colorize("&f����&c��&6��&0��&6��&c��&f���� &eIf you log out, you will be banned!"));
+			player.sendMessage(StringUtil.colorize("&f��&c��&6����&0��&6����&c��&f�� &fPlease download Teamspeak and connect to:"));
+			player.sendMessage(StringUtil.colorize("&f��&c��&6����������&c��&f�� &fts.saifed.us"));
+			player.sendMessage(StringUtil.colorize("&c��&6������&0��&6������&c��"));
+			player.sendMessage(StringUtil.colorize("&c������������������"));
+			player.sendMessage(StringUtil.colorize(" "));
 		}
 	}
 }

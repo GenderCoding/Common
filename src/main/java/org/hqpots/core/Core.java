@@ -50,7 +50,7 @@ import org.hqpots.core.listeners.MuteChatListener;
 import org.hqpots.core.listeners.StaffModeListener;
 import org.hqpots.core.redis.HQJedis;
 import org.hqpots.core.redis.RedisConfig;
-import org.hqpots.core.utils.ColorUtils;
+import org.hqpots.core.utils.StringUtil;
 
 import lombok.Getter;
 import redis.clients.jedis.JedisPool;
@@ -132,7 +132,7 @@ public class Core extends JavaPlugin implements Listener
 
 	public void onDisable()
 	{
-		Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "sc [HQRedis] " + Bukkit.getServerId() + " disconnected from the network.");
+		getHqJedis().send("off", Bukkit.getServerName());
 		if (getHqJedis().jedis != null)
 		{
 			getHqJedis().jedis.disconnect();
@@ -160,12 +160,12 @@ public class Core extends JavaPlugin implements Listener
 			ArrayList<String> lines = new ArrayList<>();
 			for (String text : getConfig().getStringList(path))
 			{
-				lines.add(new ColorUtils().translateFromString(text));
+				lines.add(StringUtil.colorize(text));
 			}
 			return lines;
 		}
 		return Arrays.asList(new String[] {
-				new ColorUtils().translateFromString("&cString list not found: '" + path + "'")
+				StringUtil.colorize("&cString list not found: '" + path + "'")
 		});
 	}
 
