@@ -56,17 +56,6 @@ import lombok.Getter;
 public class Core extends JavaPlugin implements Listener
 {
 	
-	/*
-	 * TODO: Fix Bugs Mutechat - Not letting people type it - StaffMode doesnt
-	 * allow people to enter it - Done Fix Essentials Gamemode -
-	 */
-
-	/*
-	 * 
-	 * TODO: StaffChatCommand PanicCommand ReportCommand
-	 * 
-	 */
-
 	@Getter public static Core instance;
 	private DB db;
 	public static ArrayList<String> staff = new ArrayList<>();
