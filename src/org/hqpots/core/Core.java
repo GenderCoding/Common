@@ -37,6 +37,7 @@ import org.hqpots.core.commands.StaffModeCommand;
 import org.hqpots.core.commands.login.LoginCommand;
 import org.hqpots.core.commands.login.PinCommand;
 import org.hqpots.core.commands.login.RemovePinCommand;
+import org.hqpots.core.commands.staffmode.StaffChatCommand;
 import org.hqpots.core.commands.staffmode.VanishCommand;
 import org.hqpots.core.events.DB;
 import org.hqpots.core.events.UserEvents;
@@ -54,11 +55,6 @@ import lombok.Getter;
 public class Core extends JavaPlugin implements Listener
 {
 	
-	/*
-	 * TODO: /nightvision
-	 */
-	
-
 	/*
 	 * TODO: Fix Bugs Mutechat - Not letting people type it - StaffMode doesnt
 	 * allow people to enter it - Done Fix Essentials Gamemode -
@@ -108,6 +104,7 @@ public class Core extends JavaPlugin implements Listener
 		getCommand("blacklist").setExecutor(new BlacklistCommand());
 		getCommand("creative").setExecutor(new CreativeCommand());
 		getCommand("nightvision").setExecutor(new NightVisionCommand());
+		getCommand("staffchat").setExecutor(new StaffChatCommand());
 		Bukkit.getServer().getPluginCommand("staffmode").setExecutor(new StaffModeCommand());
 		Bukkit.getServer().getPluginCommand("freeze").setExecutor(new FreezeCommand());
 		Bukkit.getServer().getPluginCommand("vanish").setExecutor(new VanishCommand());

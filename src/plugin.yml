@@ -29,3 +29,5 @@ commands:
   creative:
   nightvision:
     aliases: [nv, bright]
+  staffchat:
+    aliases: [sc, ac, adminchat]
