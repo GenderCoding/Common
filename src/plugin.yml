@@ -27,3 +27,5 @@ commands:
   blacklist:
   autorestart:
   creative:
+  nightvision:
+    aliases: [nv, bright]

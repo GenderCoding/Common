@@ -30,6 +30,7 @@ import org.hqpots.core.commands.InvseeCommand;
 import org.hqpots.core.commands.IpResetCommand;
 import org.hqpots.core.commands.ListCommand;
 import org.hqpots.core.commands.MuteChatCommand;
+import org.hqpots.core.commands.NightVisionCommand;
 import org.hqpots.core.commands.RenameCommand;
 import org.hqpots.core.commands.SpawnCommand;
 import org.hqpots.core.commands.StaffModeCommand;
@@ -52,6 +53,11 @@ import lombok.Getter;
 
 public class Core extends JavaPlugin implements Listener
 {
+	
+	/*
+	 * TODO: /nightvision
+	 */
+	
 
 	/*
 	 * TODO: Fix Bugs Mutechat - Not letting people type it - StaffMode doesnt
@@ -101,6 +107,7 @@ public class Core extends JavaPlugin implements Listener
 		getCommand("rename").setExecutor(new RenameCommand());
 		getCommand("blacklist").setExecutor(new BlacklistCommand());
 		getCommand("creative").setExecutor(new CreativeCommand());
+		getCommand("nightvision").setExecutor(new NightVisionCommand());
 		Bukkit.getServer().getPluginCommand("staffmode").setExecutor(new StaffModeCommand());
 		Bukkit.getServer().getPluginCommand("freeze").setExecutor(new FreezeCommand());
 		Bukkit.getServer().getPluginCommand("vanish").setExecutor(new VanishCommand());

@@ -33,7 +33,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.hqpots.core.Core;
 import org.hqpots.core.utils.ColorUtils;
@@ -451,8 +450,11 @@ public class StaffModeListener implements Listener
 					{
 						if (Bukkit.getServer().getOnlinePlayers().length > 1)
 						{
-//							Random random = new Random();
-//							int size = random.nextInt(Bukkit.getServer().getOnlinePlayers().length);
+							Random random = new Random();
+							int size = random.nextInt(Bukkit.getServer().getOnlinePlayers().length);
+							Player target = Bukkit.getServer().getOnlinePlayers()[size];
+							player.teleport(target);
+							player.sendMessage(new ColorUtils().translateFromString("&cTeleporting you to &a" + target.getName()));
 							event.setCancelled(true);
 						}
 						else
