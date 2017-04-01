@@ -24,7 +24,7 @@ public class StaffChatCommand implements CommandExecutor
 			return false;
 		}
 		
-		String message = StringUtil.colorize("&9(" + Bukkit.getServerName() + ") &b" + sender.getName() + " &7:&f ");
+		String message = StringUtil.colorize("&9(" + Bukkit.getServerName() + ") &b" + sender.getName() + "&7:&f ");
 		message += StringUtil.join(" ", args);
 		Core.getHqJedis().send("hq_staffchat", message);
 		

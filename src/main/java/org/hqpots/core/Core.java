@@ -132,7 +132,15 @@ public class Core extends JavaPlugin implements Listener
 
 	public void onDisable()
 	{
-
+		Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "sc [HQRedis] " + Bukkit.getServerId() + " disconnected from the network.");
+		if (getHqJedis().jedis != null)
+		{
+			getHqJedis().jedis.disconnect();
+		}
+		if (pool != null)
+		{
+			pool = null;
+		}
 	}
 
 	public DB getDB()

@@ -28,6 +28,7 @@ public class HQJedis extends JedisPubSub
 		thread.start();
 		if(getJedis().isConnected()){
 			Bukkit.getConsoleSender().sendMessage(StringUtil.colorize("&aMOTHER FUCKING REDIS CONNECTED BITCHES"));
+			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "sc [HQRedis] " + Bukkit.getServerName() + " connected to the network.");
 		}
 	}
 
