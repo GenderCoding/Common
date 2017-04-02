@@ -33,3 +33,4 @@ commands:
   staffchat:
     aliases: [sc, ac, adminchat]
   report:
+  helpop:

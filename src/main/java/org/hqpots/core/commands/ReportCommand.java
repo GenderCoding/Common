@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.hqpots.core.Core;
 import org.hqpots.core.utils.StringUtil;
 
 public class ReportCommand implements CommandExecutor
@@ -29,7 +30,7 @@ public class ReportCommand implements CommandExecutor
 		}
 
 		String reason = StringUtil.join(" ", Arrays.copyOfRange(args, 1, args.length));
-		Bukkit.broadcast(StringUtil.colorize("&c[Report] &e" + sender.getName() + " &7report &e" + Bukkit.getPlayer(target).getName() + " &7for &b") + reason, "command.staffchat");
+		Core.getHqJedis().send("hq_staffchat", StringUtil.colorize("&c[Report] &e" + sender.getName() + " &7report &e" + Bukkit.getPlayer(target).getName() + " &7for &b") + reason);
 
 		return false;
 	}

@@ -23,10 +23,11 @@ public class HQJedis extends JedisPubSub
 			pubSubJedis.auth(rConfig.getPassword());
 		}
 		Thread thread = new Thread(() -> {
-			pubSubJedis.subscribe(this, "hq_staffchat", "on", "off");
+			pubSubJedis.subscribe(this, "hq_staffchat", "hq_commandspy", "on", "off");
 		});
 		thread.start();
-		if(getJedis().isConnected()){
+		if (getJedis().isConnected())
+		{
 			Bukkit.getConsoleSender().sendMessage(StringUtil.colorize("&aMOTHER FUCKING REDIS CONNECTED BITCHES"));
 			send("on", Bukkit.getServerName());
 		}
@@ -60,17 +61,26 @@ public class HQJedis extends JedisPubSub
 	@Override
 	public void onMessage(String channel, String message)
 	{
-		if(channel.equals("hq_staffchat")){
+		if (channel.equals("hq_staffchat"))
+		{
 			Bukkit.broadcast(message, "command.staffchat");
 			Bukkit.getConsoleSender().sendMessage(message);
-		}else if(channel.equals("off")){
+		}
+		else if (channel.equals("hq_commandspy"))
+		{
+			Bukkit.broadcast(message, "command.commandspy");
+		}
+		else if (channel.equals("off"))
+		{
 			Bukkit.broadcast("§8§m------------------------------------", "command.staffchat");
 			Bukkit.broadcast("", "command.staffchat");
 			Bukkit.broadcast("                §c» §d§lNetwork Disconnection §c«", "command.staffchat");
 			Bukkit.broadcast("        §e" + message + " has §cdisconnected §efrom the network", "command.staffchat");
 			Bukkit.broadcast("", "command.staffchat");
 			Bukkit.broadcast("§8§m------------------------------------", "command.staffchat");
-		}else if(channel.equals("on")){
+		}
+		else if (channel.equals("on"))
+		{
 			Bukkit.broadcast("§8§m------------------------------------", "command.staffchat");
 			Bukkit.broadcast("", "command.staffchat");
 			Bukkit.broadcast("                §a» §d§lNetwork Connection §a«", "command.staffchat");
