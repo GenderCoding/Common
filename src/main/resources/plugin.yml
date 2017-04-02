@@ -27,6 +27,7 @@ commands:
   blacklist:
   autorestart:
   creative:
+  survival:
   nightvision:
     aliases: [nv, bright]
   staffchat:

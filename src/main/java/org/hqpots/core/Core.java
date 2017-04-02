@@ -35,6 +35,7 @@ import org.hqpots.core.commands.RenameCommand;
 import org.hqpots.core.commands.ReportCommand;
 import org.hqpots.core.commands.StaffChatCommand;
 import org.hqpots.core.commands.StaffModeCommand;
+import org.hqpots.core.commands.SurvivalCommand;
 import org.hqpots.core.commands.login.LoginCommand;
 import org.hqpots.core.commands.login.PinCommand;
 import org.hqpots.core.commands.login.RemovePinCommand;
@@ -107,6 +108,7 @@ public class Core extends JavaPlugin implements Listener
 		getCommand("rename").setExecutor(new RenameCommand());
 		getCommand("blacklist").setExecutor(new BlacklistCommand());
 		getCommand("creative").setExecutor(new CreativeCommand());
+		getCommand("survival").setExecutor(new SurvivalCommand());
 		getCommand("nightvision").setExecutor(new NightVisionCommand());
 		getCommand("staffchat").setExecutor(new StaffChatCommand());
 		getCommand("report").setExecutor(new ReportCommand());
