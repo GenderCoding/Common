@@ -21,7 +21,7 @@ public class FreezeCommand implements CommandExecutor, TabCompleter
 	{
 		if (!(sender instanceof Player))
 		{
-			sender.sendMessage(StringUtil.colorize("&cYou can not execute this command on console."));
+			sender.sendMessage(StringUtil.colorize("&cYou can not execute this command in console."));
 			return false;
 		}
 
@@ -33,13 +33,12 @@ public class FreezeCommand implements CommandExecutor, TabCompleter
 				player.sendMessage(StringUtil.colorize("&cUsage: /" + label + " <playerName>"));
 				return true;
 			}
-
 			if (arguments.length == 1)
 			{
 				Player target = Bukkit.getServer().getPlayerExact(arguments[0]);
 				if (target == null)
 				{
-					player.sendMessage(StringUtil.colorize("&cPlayer named '" + arguments[0] + "' not found."));
+					player.sendMessage(StringUtil.colorize("&cPlayer '" + arguments[0] + "' not found."));
 				}
 				else
 				{

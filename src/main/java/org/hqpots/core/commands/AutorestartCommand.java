@@ -8,9 +8,17 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.hqpots.core.Core;
+import org.hqpots.core.utils.StringUtil;
+
+import lombok.Getter;
+import lombok.Setter;
 
 public class AutorestartCommand implements CommandExecutor, Listener
 {
+
+	@Getter boolean rebooting = false;
+	@Getter int taskId;
+	@Getter @Setter int time;
 
 	public boolean onCommand(final CommandSender sender, final Command cmd, final String commandLabel, final String[] args)
 	{
@@ -20,81 +28,53 @@ public class AutorestartCommand implements CommandExecutor, Listener
 			return true;
 		}
 		final Player p = (Player) sender;
-		final String perm = ChatColor.translateAlternateColorCodes('&', "&cYou cannot execute this command");
-		if (!cmd.getName().equalsIgnoreCase("autorestart")) { return false; }
+		final String perm = StringUtil.colorize("&cYou cannot execute this command");
 		if (!p.hasPermission("command.restart"))
 		{
 			p.sendMessage(perm);
 			return true;
 		}
-		Bukkit.broadcastMessage(ChatColor.GOLD + "");
-		Bukkit.broadcastMessage(ChatColor.GOLD + "");
-		Bukkit.broadcastMessage(ChatColor.GOLD + "§6§lHQPots §ehas been scheduled a automatic restart to happen");
-		Bukkit.broadcastMessage(ChatColor.GOLD + "§ePlease reconnect one commenced the automatic restart in §7§l1 Minute");
-		Bukkit.broadcastMessage(ChatColor.GOLD + "");
-		Bukkit.broadcastMessage(ChatColor.GOLD + "");
-		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Core.instance, (Runnable) new Runnable()
+
+		if (!isRebooting())
 		{
-			@Override
-			public void run()
-			{
-				Bukkit.broadcastMessage(ChatColor.GOLD + "");
-				Bukkit.broadcastMessage(ChatColor.GOLD + "");
-				Bukkit.broadcastMessage(ChatColor.GOLD + "§6§lHQPots §ehas been scheduled a automatic restart to happen");
-				Bukkit.broadcastMessage(ChatColor.GOLD + "§ePlease reconnect one commenced the automatic restart in §7§l40 seconds");
-				Bukkit.broadcastMessage(ChatColor.GOLD + "");
-				Bukkit.broadcastMessage(ChatColor.GOLD + "");
-			}
-		}, 500L);
-		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Core.instance, (Runnable) new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				Bukkit.broadcastMessage(ChatColor.GOLD + "");
-				Bukkit.broadcastMessage(ChatColor.GOLD + "");
-				Bukkit.broadcastMessage(ChatColor.GOLD + "§6§lHQPots §ehas been scheduled a automatic restart to happen");
-				Bukkit.broadcastMessage(ChatColor.GOLD + "§ePlease reconnect one commenced the automatic restart in §7§l30 seconds");
-				Bukkit.broadcastMessage(ChatColor.GOLD + "");
-				Bukkit.broadcastMessage(ChatColor.GOLD + "");
-			}
-		}, 700L);
-		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Core.instance, (Runnable) new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				Bukkit.broadcastMessage(ChatColor.GOLD + "");
-				Bukkit.broadcastMessage(ChatColor.GOLD + "");
-				Bukkit.broadcastMessage(ChatColor.GOLD + "§6§lHQPots §ehas been scheduled a automatic restart to happen");
-				Bukkit.broadcastMessage(ChatColor.GOLD + "§ePlease reconnect one commenced the automatic restart in §7§l20 seconds");
-				Bukkit.broadcastMessage(ChatColor.GOLD + "");
-				Bukkit.broadcastMessage(ChatColor.GOLD + "");
-			}
-		}, 900L);
-		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Core.instance, (Runnable) new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				Bukkit.broadcastMessage(ChatColor.GOLD + "");
-				Bukkit.broadcastMessage(ChatColor.GOLD + "");
-				Bukkit.broadcastMessage(ChatColor.GOLD + "§6§lHQPots §ehas been scheduled a automatic restart to happen");
-				Bukkit.broadcastMessage(ChatColor.GOLD + "§ePlease reconnect one commenced the automatic restart in §7§l10 seconds");
-				Bukkit.broadcastMessage(ChatColor.GOLD + "");
-				Bukkit.broadcastMessage(ChatColor.GOLD + "");
-			}
-		}, 1000L);
-		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Core.instance, (Runnable) new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				Bukkit.savePlayers();
-				Bukkit.dispatchCommand(sender, "hub");
-				Bukkit.dispatchCommand(sender, "stop");
-			}
-		}, 1200L);
+			time = 60;
+			reboot();
+			Bukkit.broadcastMessage("");
+			Bukkit.broadcastMessage(StringUtil.colorize("&c&l(!) &cWorld reboot has been queued by the network"));
+			Bukkit.broadcastMessage(StringUtil.colorize("   The world will automagically reboot in 60 seconds"));
+			Bukkit.broadcastMessage("");
+		}
+
 		return true;
 	}
+
+	public void reboot()
+	{
+		this.taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(Core.getInstance(), () -> {
+			switch (getTime())
+			{
+				case 45:
+				case 30:
+				case 20:
+				case 10:
+				case 5:
+				case 4:
+				case 3:
+				case 2:
+				case 1:
+				case 0:
+					Bukkit.broadcastMessage(StringUtil.colorize("Rebooting " + (getTime() == 0 ? "now" : "in " + getTime() + " seconds") + "."));
+					if (getTime() == 0)
+					{
+						Bukkit.getScheduler().runTask(Core.getInstance(), () -> {
+							Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "save-all");
+							Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "stop");
+							Bukkit.getScheduler().cancelTask(getTaskId());
+						});
+					}
+					setTime(getTime() - 1);
+			}
+		} , 0, 20);
+	}
+
 }

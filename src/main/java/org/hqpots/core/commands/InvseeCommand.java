@@ -5,6 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.hqpots.core.utils.StringUtil;
 
 public class InvseeCommand implements CommandExecutor
 {
@@ -13,23 +14,23 @@ public class InvseeCommand implements CommandExecutor
 		Player p = (Player) sender;
 		if (!sender.hasPermission("command.invsee"))
 		{
-			sender.sendMessage("§cYou do not have permission to do this.");
+			sender.sendMessage(StringUtil.colorize("&cYou do not have permission to use this command."));
 			return true;
 		}
 		if (args.length == 0)
 		{
-			p.sendMessage("§c/invsee <player>");
+			p.sendMessage(StringUtil.colorize("&cUsage: /invsee [player]"));
 		}
 		else if (args.length == 1)
 		{
 			Player target = Bukkit.getServer().getPlayer(args[0]);
 			if (!target.isOnline())
 			{
-				p.sendMessage("§6'" + target.getName() + "'" + " §fis currently offline.");
+				p.sendMessage(StringUtil.colorize("&c" + args[0] + " is not online."));
 				return true;
 			}
 			p.openInventory(target.getInventory());
-			p.sendMessage("§eNow viewing §6" + target.getName() + "'s" + " §einventory.");
+			p.sendMessage(StringUtil.colorize("&cOpening " + target.getName() + "'s inventory."));
 		}
 		return false;
 	}

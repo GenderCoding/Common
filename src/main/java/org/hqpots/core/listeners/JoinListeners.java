@@ -1,7 +1,6 @@
 package org.hqpots.core.listeners;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -30,7 +29,7 @@ public class JoinListeners implements Listener
 			{
 				if (staff.hasPermission("command.alertssee"))
 				{
-					staff.sendMessage(ChatColor.RED + "You should probably increase the slots as there are people trying to log in, but the server is full");
+					staff.sendMessage(StringUtil.colorize("&cYou should probably increase the slots as there are people trying to log in, but the server is full"));
 				}
 			}
 		}

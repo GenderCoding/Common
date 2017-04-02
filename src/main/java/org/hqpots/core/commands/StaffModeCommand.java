@@ -20,31 +20,22 @@ public class StaffModeCommand implements CommandExecutor, TabCompleter
 	{
 		if (!(sender instanceof Player))
 		{
-			sender.sendMessage(StringUtil.colorize("&cYou can not execute this command on console."));
+			sender.sendMessage(StringUtil.colorize("&cYou can not execute this command in console."));
 			return false;
 		}
 
 		Player player = (Player) sender;
 		if (player.hasPermission("command.staffmode"))
 		{
-			if (arguments.length > 0)
+			if (utilities.getStaffModeListener().isStaffModeActive(player))
 			{
-				player.sendMessage(StringUtil.colorize("&cUsage: /" + label));
-				return true;
+				utilities.getStaffModeListener().setStaffMode(player, false);
+				player.sendMessage(StringUtil.colorize("&eYou have &cdisabled &eyour staffmode."));
 			}
-
-			if (arguments.length == 0)
+			else
 			{
-				if (utilities.getStaffModeListener().isStaffModeActive(player))
-				{
-					utilities.getStaffModeListener().setStaffMode(player, false);
-					player.sendMessage(StringUtil.colorize("&eYou have &cdisabled &eyour staffmode."));
-				}
-				else
-				{
-					utilities.getStaffModeListener().setStaffMode(player, true);
-					player.sendMessage(StringUtil.colorize("&eYou have &aenabled &eyour staffmode."));
-				}
+				utilities.getStaffModeListener().setStaffMode(player, true);
+				player.sendMessage(StringUtil.colorize("&eYou have &aenabled &eyour staffmode."));
 			}
 		}
 		else

@@ -3,7 +3,6 @@ package org.hqpots.core.commands.login;
 import java.io.File;
 import java.io.IOException;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -15,7 +14,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.hqpots.core.Core;
-import org.hqpots.core.utils.Color;
+import org.hqpots.core.utils.StringUtil;
 
 public class PinCommand implements Listener, CommandExecutor
 {
@@ -30,11 +29,11 @@ public class PinCommand implements Listener, CommandExecutor
 	{
 		Player p = (Player) sender;
 		FileConfiguration data = YamlConfiguration.loadConfiguration(new File(Core.getInstance().getDataFolder(), "pin.yml"));
-		if ((cmd.getName().equalsIgnoreCase("setpin")) && (sender.hasPermission("command.pin")))
+		if (sender.hasPermission("command.pin"))
 		{
 			if (args.length != 1)
 			{
-				p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cUsage&7: /setpin [pin]"));
+				p.sendMessage(StringUtil.colorize("&cUsage&7: /setpin [pin]"));
 			}
 			else if ((args.length == 1) && (!data.contains(String.valueOf(p.getUniqueId()))))
 			{
@@ -44,23 +43,23 @@ public class PinCommand implements Listener, CommandExecutor
 					i = Integer.parseInt(args[0]);
 					if ((i >= 0) && (i <= 10000))
 					{
-						p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aPin successfully set."));
+						p.sendMessage(StringUtil.colorize("&aPin successfully set."));
 						data.set(String.valueOf(p.getUniqueId()), Integer.valueOf(args[0]));
 						data.save(this.pinFile);
 					}
 					else
 					{
-						p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cNumber must be between 0-10000"));
+						p.sendMessage(StringUtil.colorize("&cNumber must be between 0-10000"));
 					}
 				}
 				catch (NumberFormatException | IOException ex2)
 				{
-					p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cThat is not a number."));
+					p.sendMessage(StringUtil.colorize("&cThat is not a number."));
 				}
 			}
 			else if ((args.length == 1) && (data.contains(String.valueOf(p.getUniqueId()))))
 			{
-				p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cIf you wish to change your pin, please speak to the owner"));
+				p.sendMessage(StringUtil.colorize("&cIf you wish to change your pin, please speak to the owner"));
 			}
 		}
 		return false;
@@ -74,7 +73,7 @@ public class PinCommand implements Listener, CommandExecutor
 		if ((!data.contains(String.valueOf(p.getUniqueId()))) && (p.hasPermission("command.pin")))
 		{
 			event.setTo(event.getFrom());
-			p.sendMessage(Color.translate("&eYou must set a &6&lPIN&e. &7&o(/setpin <pin>)"));
+			p.sendMessage(StringUtil.colorize("&eYou must set a &6&lPIN&e. &7&o(/setpin <pin>)"));
 		}
 	}
 
@@ -86,7 +85,7 @@ public class PinCommand implements Listener, CommandExecutor
 		if ((!e.getMessage().startsWith("/setpin")) && (!data.contains(String.valueOf(p.getUniqueId()))) && (p.hasPermission("Core.command.pin")))
 		{
 			e.setCancelled(true);
-			p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&eYou must set a &6&lPIN&e. &7&o(/setpin <pin>)"));
+			p.sendMessage(StringUtil.colorize("&eYou must set a &6&lPIN&e. &7&o(/setpin <pin>)"));
 		}
 	}
 }

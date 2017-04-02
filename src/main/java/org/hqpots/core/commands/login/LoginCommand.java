@@ -32,7 +32,7 @@ public class LoginCommand implements Listener, CommandExecutor
 		Player p = (Player) sender;
 		FileConfiguration data = YamlConfiguration.loadConfiguration(new File(Core.getInstance().getDataFolder(), "pin.yml"));
 		FileConfiguration fails = YamlConfiguration.loadConfiguration(new File(Core.getInstance().getDataFolder(), "fails.yml"));
-		if ((cmd.getName().equalsIgnoreCase("pin")) && (loggingin.contains(p.getName())))
+		if (loggingin.contains(p.getName()))
 		{
 			if (args.length != 1)
 			{
@@ -104,10 +104,6 @@ public class LoginCommand implements Listener, CommandExecutor
 				{
 					try
 					{
-						for (int i = 0; i < 100; i++)
-						{
-							p.sendMessage("");
-						}
 						p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&eYou just &6&lLOGGED IN&e."));
 						loggingin.remove(p.getName());
 						fails.set(String.valueOf(p.getUniqueId()), Integer.valueOf(0));

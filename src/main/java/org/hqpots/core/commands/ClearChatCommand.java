@@ -1,6 +1,5 @@
 package org.hqpots.core.commands;
 
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -23,7 +22,7 @@ public class ClearChatCommand implements CommandExecutor
 				for (Player online : Bukkit.getServer().getOnlinePlayers())
 				{
 					online.sendMessage(new String[101]);
-					online.sendMessage(StringUtil.colorize("&a" + sender.getName() + " &ehas cleared the global chat for &7" + StringUtils.join(arguments, ' ') + "&e."));
+					online.sendMessage(StringUtil.colorize("&a" + sender.getName() + " &ehas cleared the global chat for &7" + StringUtil.join(" ", arguments) + "&e."));
 				}
 			}
 		}

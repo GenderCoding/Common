@@ -32,7 +32,6 @@ public class VanishCommand implements CommandExecutor, TabCompleter
 				player.sendMessage(StringUtil.colorize("&cUsage: /" + label));
 				return true;
 			}
-
 			if (arguments.length == 0)
 			{
 				if (utilities.getStaffModeListener().isVanished(player))

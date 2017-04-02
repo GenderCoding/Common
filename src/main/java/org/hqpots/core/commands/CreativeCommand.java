@@ -1,12 +1,12 @@
 package org.hqpots.core.commands;
 
-import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.hqpots.core.api.PermissionsAPI;
+import org.hqpots.core.utils.StringUtil;
 
 public class CreativeCommand implements CommandExecutor
 {
@@ -30,7 +30,7 @@ public class CreativeCommand implements CommandExecutor
 			}
 
 			player.setGameMode(GameMode.CREATIVE);
-			player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aYour GameMode has been set to&A CREATIVE!"));
+			player.sendMessage(StringUtil.colorize("&aYour GameMode has been set to&A CREATIVE!"));
 
 		}
 		return false;

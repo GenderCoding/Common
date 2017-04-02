@@ -3,13 +3,12 @@ package org.hqpots.core.listeners;
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.hqpots.core.Core;
+import org.hqpots.core.utils.StringUtil;
 
-import ru.tehkode.permissions.PermissionGroup;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
@@ -22,7 +21,6 @@ public class DonorBroadcast implements Listener
 		new BukkitRunnable()
 		{
 
-			@SuppressWarnings("deprecation")
 			@Override
 			public void run()
 			{
@@ -30,13 +28,12 @@ public class DonorBroadcast implements Listener
 				for (Player player : Bukkit.getOnlinePlayers())
 				{
 					PermissionUser u = PermissionsEx.getUser(player);
-					PermissionGroup g = u.getGroups()[0];
-					if (g.getName().equalsIgnoreCase("platinum"))
+					if (u.inGroup("platinum"))
 					{
 						playernames.add(player.getName());
 					}
 				}
-				Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&eOnline &3✵&bPlatinum &eUsers:&b ") + playernames.toString());
+				Bukkit.broadcastMessage(StringUtil.colorize("&eOnline &3✵&bPlatinum &eUsers:&b ") + playernames.toString());
 			}
 		}.runTaskTimer(Core.getInstance(), 3600L, 3600L);
 	}

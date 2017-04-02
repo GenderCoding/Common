@@ -13,8 +13,8 @@ public class PermissionsAPI implements Listener
 
 	static
 	{
-		PERMISSION = ChatColor.RED + "You dont have perms to use this command";
-		CONSOLE = ChatColor.RED + "Dont use this command in console";
+		PERMISSION = ChatColor.RED + "You don't have perms to use this command.";
+		CONSOLE = ChatColor.RED + "Don't use this command in console.";
 		DATA = ChatColor.GREEN + "Your Data has sucsessfully loaded!";
 	}
 }
