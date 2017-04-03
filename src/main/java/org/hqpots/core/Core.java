@@ -77,7 +77,7 @@ public class Core extends JavaPlugin implements Listener
 	public void onEnable()
 	{
 		instance = this;
-		redisConfig = new RedisConfig("localhost", null);
+		redisConfig = new RedisConfig("159.203.41.208", null);
 		JedisPoolConfig jpc = new JedisPoolConfig();
 		if(getRedisConfig().hasSecurity()){
 			pool = new JedisPool(jpc, getRedisConfig().getHost(), Protocol.DEFAULT_PORT, Protocol.DEFAULT_TIMEOUT, getRedisConfig().getPassword());
