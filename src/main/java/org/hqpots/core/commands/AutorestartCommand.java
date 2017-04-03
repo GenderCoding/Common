@@ -67,6 +67,9 @@ public class AutorestartCommand implements CommandExecutor, Listener
 					if (getTime() == 0)
 					{
 						Bukkit.getScheduler().runTask(Core.getInstance(), () -> {
+							Bukkit.getOnlinePlayers().forEach(player -> {
+								player.chat("/hub");
+							});
 							Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "save-all");
 							Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "stop");
 							Bukkit.getScheduler().cancelTask(getTaskId());
