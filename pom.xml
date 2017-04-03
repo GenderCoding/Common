@@ -7,19 +7,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
   
-  <developers>
-    <developer>
-      <id>JiNJaProductionz</id>
-      <name>Dylan K.</name> <!-- Not a good idea to have full name in pom XML for doxing reasons -->
-      <email>JiNJaProductionz@gmail.com</email>
-      <roles>
-        <role>architect</role>
-        <role>developer</role>
-      </roles>
-      <timezone>GMT+0</timezone>
-    </developer>
-  </developers>
-  
+
   <properties>
     <author>JiNJaProductionz</author> <!-- I use this in my plugin.yml as the author -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
