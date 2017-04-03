@@ -9,7 +9,7 @@ public class PlayerCount implements Runnable
 	@Override
 	public void run()
 	{
-		Core.getHqJedis().set(Bukkit.getServerId(), Integer.toString(Bukkit.getOnlinePlayers().size()));
+		Core.getHqJedis().set(Bukkit.getServerName(), Integer.toString(Bukkit.getOnlinePlayers().size()));
 	}
 
 }
