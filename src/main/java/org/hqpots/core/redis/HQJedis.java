@@ -44,6 +44,31 @@ public class HQJedis extends JedisPubSub
 			e.printStackTrace();
 		}
 	}
+	
+	public void set(String key, String value)
+	{
+		try
+		{
+			getJedis().set(key, value);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public String get(String key)
+	{
+		try
+		{
+			return getJedis().get(key);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public Jedis getJedis()
 	{

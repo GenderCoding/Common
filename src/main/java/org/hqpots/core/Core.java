@@ -53,6 +53,7 @@ import org.hqpots.core.listeners.MuteChatListener;
 import org.hqpots.core.listeners.StaffModeListener;
 import org.hqpots.core.redis.HQJedis;
 import org.hqpots.core.redis.RedisConfig;
+import org.hqpots.core.tasks.PlayerCount;
 import org.hqpots.core.utils.StringUtil;
 
 import lombok.Getter;
@@ -74,6 +75,7 @@ public class Core extends JavaPlugin implements Listener
 	@Getter private StaffModeListener staffModeListener;
 	@Getter private FreezeListener freezeListener;
 
+	@SuppressWarnings("deprecation")
 	public void onEnable()
 	{
 		instance = this;
@@ -134,6 +136,8 @@ public class Core extends JavaPlugin implements Listener
 		Bukkit.getServer().getPluginManager().registerEvents(freezeListener, this);
 		staffModeListener = new StaffModeListener();
 		Bukkit.getServer().getPluginManager().registerEvents(staffModeListener, this);
+		
+		Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, new PlayerCount(), 0, 200); 
 	}
 
 	public void onDisable()

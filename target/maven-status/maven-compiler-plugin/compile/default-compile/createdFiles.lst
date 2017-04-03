@@ -8,6 +8,7 @@ org\hqpots\core\commands\login\LoginCommand.class
 org\hqpots\core\commands\SurvivalCommand.class
 org\hqpots\core\listeners\JoinHandler.class
 org\hqpots\core\listeners\MuteChatListener.class
+org\hqpots\core\tasks\PlayerCount.class
 org\hqpots\core\listeners\DonorBroadcast.class
 org\hqpots\core\commands\InvseeCommand.class
 org\hqpots\core\commands\login\RemovePinCommand.class
