@@ -53,6 +53,7 @@ import org.hqpots.core.listeners.MuteChatListener;
 import org.hqpots.core.listeners.StaffModeListener;
 import org.hqpots.core.redis.HQJedis;
 import org.hqpots.core.redis.RedisConfig;
+import org.hqpots.core.tasks.PlayerCount;
 import org.hqpots.core.utils.StringUtil;
 
 import lombok.Getter;
@@ -62,7 +63,7 @@ import redis.clients.jedis.Protocol;
 
 public class Core extends JavaPlugin implements Listener
 {
-	
+
 	@Getter public static Core instance;
 	@Getter public static RedisConfig redisConfig;
 	@Getter public static HQJedis hqJedis;
@@ -74,14 +75,18 @@ public class Core extends JavaPlugin implements Listener
 	@Getter private StaffModeListener staffModeListener;
 	@Getter private FreezeListener freezeListener;
 
+	@SuppressWarnings("deprecation")
 	public void onEnable()
 	{
 		instance = this;
 		redisConfig = new RedisConfig("159.203.41.208", null);
 		JedisPoolConfig jpc = new JedisPoolConfig();
-		if(getRedisConfig().hasSecurity()){
+		if (getRedisConfig().hasSecurity())
+		{
 			pool = new JedisPool(jpc, getRedisConfig().getHost(), Protocol.DEFAULT_PORT, Protocol.DEFAULT_TIMEOUT, getRedisConfig().getPassword());
-		}else{
+		}
+		else
+		{
 			pool = new JedisPool(jpc, getRedisConfig().getHost(), Protocol.DEFAULT_PORT, Protocol.DEFAULT_TIMEOUT);
 		}
 		hqJedis = new HQJedis();
@@ -134,6 +139,8 @@ public class Core extends JavaPlugin implements Listener
 		Bukkit.getServer().getPluginManager().registerEvents(freezeListener, this);
 		staffModeListener = new StaffModeListener();
 		Bukkit.getServer().getPluginManager().registerEvents(staffModeListener, this);
+
+		Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, new PlayerCount(), 0, 200);
 	}
 
 	public void onDisable()
@@ -184,9 +191,12 @@ public class Core extends JavaPlugin implements Listener
 				getDataFolder().mkdirs();
 			}
 			File file = new File(getDataFolder().getAbsolutePath(), "config.yml");
-//			File file2 = new File(getDataFolder().getAbsolutePath(), "pin.yml");
-//			File file3 = new File(getDataFolder().getAbsolutePath(), "fails.yml");
-//			File file4 = new File(getDataFolder().getAbsoluteFile(), "notes.yml");
+			// File file2 = new File(getDataFolder().getAbsolutePath(),
+			// "pin.yml");
+			// File file3 = new File(getDataFolder().getAbsolutePath(),
+			// "fails.yml");
+			// File file4 = new File(getDataFolder().getAbsoluteFile(),
+			// "notes.yml");
 			if (!file.exists())
 			{
 				getFileConfigurationOptions().copyDefaults(true);
