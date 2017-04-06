@@ -184,42 +184,31 @@ public class StaffModeListener implements Listener
 		ItemStack book = new ItemStack(Material.BOOK, 1);
 		ItemMeta bookMeta = book.getItemMeta();
 		bookMeta.setDisplayName(StringUtil.colorize("&bInspection Tool"));
-		bookMeta.setLore(Arrays.asList(
-				StringUtil.colorize("&7Right click player to inspect inventory")
-		));
+		bookMeta.setLore(Arrays.asList(StringUtil.colorize("&7Right click player to inspect inventory")));
 		book.setItemMeta(bookMeta);
 
 		ItemStack woodAxe = new ItemStack(Material.WOOD_AXE, 1);
 		ItemMeta woodAxeMeta = woodAxe.getItemMeta();
 		woodAxeMeta.setDisplayName(StringUtil.colorize("&bWorldEdit Wand"));
-		woodAxeMeta.setLore(Arrays.asList(
-				StringUtil.colorize("&7Left click block: Select first position"),
-				StringUtil.colorize("&7Right click block: Select second position")
-		));
+		woodAxeMeta.setLore(Arrays.asList(StringUtil.colorize("&7Left click block: Select first position"), StringUtil.colorize("&7Right click block: Select second position")));
 		woodAxe.setItemMeta(woodAxeMeta);
 
 		ItemStack carpet = new ItemStack(Material.CARPET, 1, (short) 3);
 		ItemMeta carpetMeta = carpet.getItemMeta();
 		carpetMeta.setDisplayName(StringUtil.colorize("&bBetter Vision"));
-		carpetMeta.setLore(Arrays.asList(
-				StringUtil.colorize("&7Used to get a better vision to your target")
-		));
+		carpetMeta.setLore(Arrays.asList(StringUtil.colorize("&7Used to get a better vision to your target")));
 		carpet.setItemMeta(carpetMeta);
 
 		ItemStack diamondPickaxe = new ItemStack(Material.DIAMOND_PICKAXE, 1);
 		ItemMeta diamondPickaxeMeta = diamondPickaxe.getItemMeta();
 		diamondPickaxeMeta.setDisplayName(StringUtil.colorize("&bXrayer Finder"));
-		diamondPickaxeMeta.setLore(Arrays.asList(
-				StringUtil.colorize("&7Right click to open the xrayer finder menu")
-		));
+		diamondPickaxeMeta.setLore(Arrays.asList(StringUtil.colorize("&7Right click to open the xrayer finder menu")));
 		diamondPickaxe.setItemMeta(diamondPickaxeMeta);
 
 		ItemStack record10 = new ItemStack(Material.RECORD_10, 1);
 		ItemMeta record10Meta = record10.getItemMeta();
 		record10Meta.setDisplayName(StringUtil.colorize("&bRandom Teleportation"));
-		record10Meta.setLore(Arrays.asList(
-				StringUtil.colorize("&7Right click to teleport to a random player")
-		));
+		record10Meta.setLore(Arrays.asList(StringUtil.colorize("&7Right click to teleport to a random player")));
 		record10.setItemMeta(record10Meta);
 
 		playerInventory.setItem(0, compass);
@@ -240,9 +229,7 @@ public class StaffModeListener implements Listener
 			inkSack = new ItemStack(Material.INK_SACK, 1, (short) 8);
 			ItemMeta inkSackMeta = inkSack.getItemMeta();
 			inkSackMeta.setDisplayName(StringUtil.colorize("&bVanished: &aTrue"));
-			inkSackMeta.setLore(Arrays.asList(
-					StringUtil.colorize("&7Right click to update your vanish status.")
-			));
+			inkSackMeta.setLore(Arrays.asList(StringUtil.colorize("&7Right click to update your vanish status.")));
 			inkSack.setItemMeta(inkSackMeta);
 		}
 		else
@@ -250,9 +237,7 @@ public class StaffModeListener implements Listener
 			inkSack = new ItemStack(Material.INK_SACK, 1, (short) 10);
 			ItemMeta inkSackMeta = inkSack.getItemMeta();
 			inkSackMeta.setDisplayName(StringUtil.colorize("&bVanished: &cFalse"));
-			inkSackMeta.setLore(Arrays.asList(
-					StringUtil.colorize("&7Right click to update your vanish status.")
-			));
+			inkSackMeta.setLore(Arrays.asList(StringUtil.colorize("&7Right click to update your vanish status.")));
 			inkSack.setItemMeta(inkSackMeta);
 		}
 
@@ -286,31 +271,27 @@ public class StaffModeListener implements Listener
 				ItemMeta brewingStandMeta = brewingStand.getItemMeta();
 				brewingStandMeta.setDisplayName(StringUtil.colorize("&aActive Potion Effects"));
 				ArrayList<String> brewingStandLore = new ArrayList<>();
-//				for (PotionEffect potionEffect : target.getPlayer().getActivePotionEffects())
-//				{
-//					String effectName = potionEffect.getType().getName();
-//					int effectLevel = potionEffect.getAmplifier();
-//					effectLevel++;
-//					// brewingStandLore.add(new
-//					// StringUtil.colorize("&e" +
-//					// WordUtils.capitalizeFully(effectName).replace("_", " ") +
-//					// " " + effectLevel + "&7: &c" +
-//					// TimeUtils.IntegerCountdown.setFormat(potionEffect.getDuration()
-//					// / 20)));
-//				}
+				// for (PotionEffect potionEffect :
+				// target.getPlayer().getActivePotionEffects())
+				// {
+				// String effectName = potionEffect.getType().getName();
+				// int effectLevel = potionEffect.getAmplifier();
+				// effectLevel++;
+				// // brewingStandLore.add(new
+				// // StringUtil.colorize("&e" +
+				// // WordUtils.capitalizeFully(effectName).replace("_", " ") +
+				// // " " + effectLevel + "&7: &c" +
+				// //
+				// TimeUtils.IntegerCountdown.setFormat(potionEffect.getDuration()
+				// // / 20)));
+				// }
 				brewingStandMeta.setLore(brewingStandLore);
 				brewingStand.setItemMeta(brewingStandMeta);
 
 				ItemStack compass = new ItemStack(Material.COMPASS, 1);
 				ItemMeta compassMeta = compass.getItemMeta();
 				compassMeta.setDisplayName(StringUtil.colorize("&aPlayer Location"));
-				compassMeta.setLore(Arrays.asList(
-						StringUtil.colorize("&eWorld&7: &a" + player.getWorld().getName()),
-						StringUtil.colorize("&eCoords"),
-						StringUtil.colorize("  &eX&7: &c" + target.getLocation().getBlockX()),
-						StringUtil.colorize("  &eY&7: &c" + target.getLocation().getBlockY()),
-						StringUtil.colorize("  &eZ&7: &c" + target.getLocation().getBlockZ())
-				));
+				compassMeta.setLore(Arrays.asList(StringUtil.colorize("&eWorld&7: &a" + player.getWorld().getName()), StringUtil.colorize("&eCoords"), StringUtil.colorize("  &eX&7: &c" + target.getLocation().getBlockX()), StringUtil.colorize("  &eY&7: &c" + target.getLocation().getBlockY()), StringUtil.colorize("  &eZ&7: &c" + target.getLocation().getBlockZ())));
 				compass.setItemMeta(compassMeta);
 
 				ItemStack magmaCream = new ItemStack(Material.MAGMA_CREAM, 1);
@@ -323,9 +304,7 @@ public class StaffModeListener implements Listener
 				{
 					magmaCreamMeta.setDisplayName(StringUtil.colorize("&aFrozen&7: &cFalse"));
 				}
-				magmaCreamMeta.setLore(Arrays.asList(
-						StringUtil.colorize("&eClick to update freeze status")
-				));
+				magmaCreamMeta.setLore(Arrays.asList(StringUtil.colorize("&eClick to update freeze status")));
 				magmaCream.setItemMeta(magmaCreamMeta);
 
 				ItemStack orangeGlassPane = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 1);
@@ -356,9 +335,9 @@ public class StaffModeListener implements Listener
 					inspectedPlayer.remove(player.getUniqueId());
 				}
 			}
-		}.runTaskTimer(utilities,0L,5L);
+		}.runTaskTimer(utilities, 0L, 5L);
 
-	player.openInventory(inventory);
+		player.openInventory(inventory);
 
 	}
 
@@ -449,8 +428,10 @@ public class StaffModeListener implements Listener
 							Random random = new Random();
 							int size = random.nextInt(Bukkit.getServer().getOnlinePlayers().size());
 							Player randomPlayer = null;
-							for(Player each : Bukkit.getOnlinePlayers()){
-								if(size > 0){
+							for (Player each : Bukkit.getOnlinePlayers())
+							{
+								if (size > 0)
+								{
 									size--;
 									continue;
 								}

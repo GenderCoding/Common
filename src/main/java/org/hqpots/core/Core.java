@@ -56,6 +56,7 @@ import org.hqpots.core.redis.RedisConfig;
 import org.hqpots.core.tasks.PlayerCount;
 import org.hqpots.core.utils.StringUtil;
 
+
 import lombok.Getter;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
@@ -64,6 +65,24 @@ import redis.clients.jedis.Protocol;
 public class Core extends JavaPlugin implements Listener
 {
 
+	/*
+	 * 
+	 * TODO: 
+	 * 
+	 * Developers API:
+	 * 
+	 * Core.getInstance().getStaffModeListener().isStaffModeActive(player)
+	 * .isVanished()
+	 * .hasPreviousInventory()
+	 * .saveInventory()
+	 * .loadInventory
+	 * .setStaffMode()
+	 * .setVanished()
+	 * .setItems
+	 * 
+	 * 
+	 */
+	
 	@Getter public static Core instance;
 	@Getter public static RedisConfig redisConfig;
 	@Getter public static HQJedis hqJedis;
